@@ -45,7 +45,7 @@ export default function Testimonials() {
                 border: '1px solid var(--border)'
               }}
             >
-              <div style={{ display: 'flex', gap: '4px', color: 'var(--red)', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', gap: '4px', color: 'var(--navy)', marginBottom: '16px' }}>
                 ★★★★★
               </div>
               <p style={{ color: 'var(--text-dim)', lineHeight: '1.6', marginBottom: '24px', fontStyle: 'italic' }}>

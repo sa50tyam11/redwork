@@ -25,7 +25,7 @@ export default function Services({ onOpenBooking, preview = false }) {
             whileHover={{ y: -8, transition: { duration: 0.3 } }}
             style={{ background: 'var(--bg-1)', border: '1px solid var(--glass-border)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
           >
-            <div className="card-tag" style={{ background: 'transparent', border: '1px solid #7eb4ff', color: '#7eb4ff' }}>DISCORD</div>
+            <div className="card-tag" style={{ background: 'transparent', border: '1px solid var(--blue-tag)', color: 'var(--blue-tag)' }}>DISCORD</div>
             <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-disp)', margin: '20px 0', color: 'var(--text)' }}>Discord Bot</h3>
             <p style={{ color: 'var(--text-dim)', fontSize: '1rem', lineHeight: 1.7, marginBottom: preview ? '0' : '32px' }}>
               {preview 
@@ -41,7 +41,7 @@ export default function Services({ onOpenBooking, preview = false }) {
           <motion.div 
             variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.2 }}
             whileHover={{ y: -8, transition: { duration: 0.3 } }}
-            style={{ background: 'linear-gradient(145deg, rgba(232,37,26,0.05) 0%, transparent 100%)', border: '1px solid rgba(232,37,26,0.2)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
+            style={{ background: 'linear-gradient(145deg, rgba(217,58,43,0.08) 0%, transparent 100%)', border: '1px solid rgba(217,58,43,0.3)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
           >
             <div className="card-tag" style={{ background: 'var(--red)', color: '#fff', border: 'none' }}>MOST POPULAR</div>
             <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-disp)', margin: '20px 0', color: 'var(--text)' }}>Student / Academic Project</h3>
@@ -79,7 +79,7 @@ export default function Services({ onOpenBooking, preview = false }) {
             whileHover={{ y: -8, transition: { duration: 0.3 } }}
             style={{ background: 'var(--bg-1)', border: '1px solid var(--glass-border)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
           >
-            <div className="card-tag" style={{ background: 'transparent', border: '1px solid #7eb4ff', color: '#7eb4ff' }}>LAUNCH</div>
+            <div className="card-tag" style={{ background: 'transparent', border: '1px solid var(--blue-tag)', color: 'var(--blue-tag)' }}>LAUNCH</div>
             <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-disp)', margin: '20px 0', color: 'var(--text)' }}>Landing Page</h3>
             <p style={{ color: 'var(--text-dim)', fontSize: '1rem', lineHeight: 1.7, marginBottom: preview ? '0' : '32px' }}>
               {preview 

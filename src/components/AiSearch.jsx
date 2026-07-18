@@ -115,8 +115,8 @@ export default function AiSearch({ compact = false }) {
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             style={{ 
-              background: 'rgba(245, 166, 35, 0.05)', 
-              border: '1px solid rgba(245, 166, 35, 0.15)', 
+              background: 'rgba(226,154,46,0.12)', 
+              border: '1px solid rgba(226,154,46,0.25)', 
               borderLeft: '4px solid #f5a623', 
               borderRadius: '12px', 
               padding: '16px 24px', 
@@ -128,7 +128,7 @@ export default function AiSearch({ compact = false }) {
           >
             <span style={{ fontSize: '1.4rem' }}>⚠️</span>
             <p style={{ margin: 0, color: 'var(--text-mute)', fontSize: '0.9rem', lineHeight: 1.6 }}>
-              <strong style={{ color: 'var(--text)' }}>Note:</strong> All prices shown are <strong style={{ color: '#f5a623' }}>starting points</strong>. Final pricing depends on project complexity, features, revisions, and timeline. A custom quote will be shared before any work begins.
+              <strong style={{ color: 'var(--text)' }}>Note:</strong> All prices shown are <strong style={{ color: 'var(--amber)' }}>starting points</strong>. Final pricing depends on project complexity, features, revisions, and timeline. A custom quote will be shared before any work begins.
             </p>
           </motion.div>
         )}
@@ -216,7 +216,7 @@ export default function AiSearch({ compact = false }) {
                         {item.title}
                       </h4>
                       {/* Price Badge integrated into search results */}
-                      <div style={{ background: 'rgba(232,37,26,0.1)', border: '1px solid rgba(232,37,26,0.3)', color: 'var(--red)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', padding: '6px 12px', borderRadius: '100px', fontWeight: 'bold' }}>
+                      <div style={{ background: 'rgba(217,58,43,0.08)', border: '1px solid rgba(217,58,43,0.2)', color: 'var(--red)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', padding: '6px 12px', borderRadius: '100px', fontWeight: 'bold' }}>
                         {item.price}
                       </div>
                     </div>

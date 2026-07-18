@@ -24,7 +24,7 @@ export default function WorkProcess() {
       ref={containerRef} 
       style={{ 
         height: '300vh', 
-        background: '#050505', // Explicit black background
+        background: 'var(--bg)', // Explicit black background
         position: 'relative',
         zIndex: 20 // Ensure it's above previous sections
       }}
@@ -42,16 +42,16 @@ export default function WorkProcess() {
      <div className="container responsive-grid designation-grid" style={{ width: '100%' }}>
           
           <div className="process-info">
-            <p className="label" style={{ color: '#e8251a' }}>The Methodology</p>
-            <h2 style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', margin: '10px 0' }}>How We<br/>Work</h2>
+            <p className="label" style={{ color: 'var(--red)' }}>The Methodology</p>
+            <h2 style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--text)', margin: '10px 0' }}>How We<br/>Work</h2>
           </div>
 
           <div style={{ position: 'relative', paddingLeft: '40px' }}>
             {/* Background Line */}
-            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '1px', background: 'rgba(255,255,255,0.1)' }} />
+            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '1px', background: 'var(--glass-border)' }} />
             
             {/* Animated Red Line */}
-            <motion.div style={{ position: 'absolute', left: 0, top: 0, width: '2px', height: lineHeight, background: '#e8251a', boxShadow: '0 0 15px #e8251a' }} />
+            <motion.div style={{ position: 'absolute', left: 0, top: 0, width: '2px', height: lineHeight, background: 'var(--red)', boxShadow: '0 0 15px #e8251a' }} />
 
             {steps.map((step, index) => {
               const start = index * 0.25;
@@ -60,8 +60,8 @@ export default function WorkProcess() {
 
               return (
                 <motion.div key={step.id} style={{ opacity, marginBottom: '40px' }}>
-                   <span style={{ color: '#e8251a', fontSize: '0.8rem', fontFamily: 'monospace' }}>[{step.id}]</span>
-                   <h3 style={{ color: '#fff', fontSize: '1.5rem', margin: '5px 0' }}>{step.title}</h3>
+                   <span style={{ color: 'var(--red)', fontSize: '0.8rem', fontFamily: 'monospace' }}>[{step.id}]</span>
+                   <h3 style={{ color: 'var(--text)', fontSize: '1.5rem', margin: '5px 0' }}>{step.title}</h3>
                    <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', maxWidth: '400px' }}>{step.text}</p>
                 </motion.div>
               );

@@ -34,7 +34,7 @@ export default function Story() {
     const y3 = useTransform(smoothProgress, [0.7, 0.8, 1, 1], [20, 0, 0, 0]);
 
     return (
-        <section ref={containerRef} className="story-section" style={{ height: '400vh', position: 'relative', background: 'var(--bg)' }}>
+        <section ref={containerRef} className="story-section" style={{ height: '400vh', position: 'relative', background: 'var(--bg-hero)' }}>
             <div style={{ position: 'sticky', top: 0, height: '100dvh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
 
                 {/* --- 3D ANTIGRAVITY BACKGROUND --- */}
@@ -53,7 +53,7 @@ export default function Story() {
                         waveAmplitude={1}
                         particleSize={1.5}
                         lerpSpeed={0.05}
-                        color="#e8251a"
+                        color="#D93A2B"
                         autoAnimate={true}
                         particleVariance={1}
                         rotationSpeed={particleRotation}
@@ -70,7 +70,7 @@ export default function Story() {
                             fontSize: 'clamp(1.8rem, 5vw, 3.5rem)', fontFamily: 'var(--font-disp)', fontWeight: 900, lineHeight: 1.1
                         }}>
                             Most student projects are copy-pasted.<br />
-                            <span style={{ color: 'var(--text-mute)' }}>Most small businesses never</span> <br />
+                            <span style={{ color: 'var(--text-on-hero-mute)' }}>Most small businesses never</span> <br />
                             get a website at all.
                         </motion.h2>
 
@@ -112,9 +112,9 @@ export default function Story() {
                             textTransform: 'uppercase',
                             letterSpacing: '-0.04em'
                         }}>
-                            Built. <br />Not <br /><span style={{ color: 'var(--red)', textShadow: '0 0 30px rgba(232,37,26,0.3)' }}>Borrowed.</span>
+                            Built. <br />Not <br /><span style={{ color: 'var(--red)', textShadow: '0 0 30px rgba(217,58,43,0.3)' }}>Borrowed.</span>
                         </h3>
-                        <p style={{ color: 'var(--text-dim)', fontSize: '0.9rem', maxWidth: '280px', marginTop: '10px' }}>
+                        <p style={{ color: 'var(--text-on-hero-dim)', fontSize: '0.9rem', maxWidth: '280px', marginTop: '10px' }}>
                             We build real, working products — fast — for people who need <strong>results</strong>, not just a portfolio piece.
                         </p>
                     </div>
