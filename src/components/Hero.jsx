@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import Waves from './Waves';
 
 const captions = [
   "Websites that actually convert.",
@@ -21,25 +20,15 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full h-[100svh] bg-[#080808] overflow-hidden selection:bg-[#e8251a] selection:text-[#fff]">
-
-        {/* Background Waves (Dark theme) */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
-          <Waves
-            lineColor="rgba(232, 37, 26, 0.3)"
-            backgroundColor="transparent"
-            waveSpeedX={0.02}
-            waveSpeedY={0.01}
-            waveAmpX={40}
-            waveAmpY={20}
-            friction={0.9}
-            tension={0.01}
-            maxCursorMove={120}
-            xGap={12}
-            yGap={36}
-          />
-        </div>
-
+    <section 
+      className="relative w-full h-[100svh] bg-[#080808] overflow-hidden selection:bg-[#e8251a] selection:text-[#fff]"
+      style={{
+        backgroundImage: 'url("/hero.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
         {/* Background Soft Glows (Dark theme friendly) */}
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-60">
           <div className="w-[800px] h-[800px] bg-[#e8251a]/5 blur-[100px] rounded-[100%] scale-150 transform -translate-y-10"></div>
