@@ -1,40 +1,46 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import CardNav from './shared/CardNav';
 
 export default function Navbar({ onOpenBooking }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const items = [
+    {
+      label: "About Us",
+      bgColor: "#1B1722",
+      textColor: "#fff",
+      links: [
+        { label: "Home", href: "/", ariaLabel: "Home Page" },
+        { label: "Services", href: "/services", ariaLabel: "Our Services" },
+        { label: "Pricing", href: "/pricing", ariaLabel: "Pricing Plans" }
+      ]
+    },
+    {
+      label: "Work", 
+      bgColor: "#2F293A",
+      textColor: "#fff",
+      links: [
+        { label: "Our Work", href: "/work", ariaLabel: "Our Portfolio" },
+        { label: "Search", href: "/search", ariaLabel: "Search Projects" }
+      ]
+    },
+    {
+      label: "Contact",
+      bgColor: "#111111", 
+      textColor: "#fff",
+      links: [
+        { label: "Contact Us", href: "/contact", ariaLabel: "Contact Form" }
+      ]
+    }
+  ];
 
   return (
-    <nav className={`nav ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="nav-inner">
-        <Link className="wordmark" to="/">RED<em>WORK</em></Link>
-        <ul className="nav-links">
-          <li><Link to="/services" className="nav-pill">Services</Link></li>
-          <li><Link to="/work" className="nav-pill">Work</Link></li>
-          <li><Link to="/" className="nav-pill">Home</Link></li>
-          <li><Link to="/contact" className="nav-pill">Contact</Link></li>
-          <li><Link to="/search" className="nav-pill">Search</Link></li>
-        </ul>
-        <button className="nav-cta" onClick={onOpenBooking}>Get Free Consult</button>
-        <button className={`hamburger ${isMobileOpen ? 'open' : ''}`} onClick={() => setIsMobileOpen(!isMobileOpen)}>
-          <span></span><span></span>
-        </button>
-      </div>
-
-      <div className={`mobile-menu ${isMobileOpen ? 'open' : ''}`}>
-        <Link to="/services" onClick={() => setIsMobileOpen(false)}>Services</Link>
-        <Link to="/work" onClick={() => setIsMobileOpen(false)}>Work</Link>
-        <Link to="/pricing" onClick={() => setIsMobileOpen(false)}>Pricing</Link>
-        <Link to="/contact" onClick={() => setIsMobileOpen(false)}>Contact</Link>
-        <button className="nav-cta" onClick={() => { onOpenBooking(); setIsMobileOpen(false); }}>Get Free Consult</button>
-      </div>
-    </nav>
+    <CardNav
+      items={items}
+      baseColor="transparent"
+      menuColor="#e8251a"
+      buttonBgColor="#e8251a"
+      buttonTextColor="#fff"
+      ease="power3.out"
+      onOpenBooking={onOpenBooking}
+    />
   );
 }
