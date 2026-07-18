@@ -9,22 +9,26 @@ import ProcessPage from './pages/ProcessPage';
 import SearchPage from './pages/SearchPage';
 import ContactPage from './pages/ContactPage';
 
+import { ReactLenis } from 'lenis/react';
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="services" element={<ServicesPage />} />
-          <Route path="pricing" element={<PricingPage />} />
-          <Route path="work" element={<WorkPage />} />
-          <Route path="testimonials" element={<TestimonialsPage />} />
-          <Route path="how-we-work" element={<ProcessPage />} />
-          <Route path="search" element={<SearchPage />} />
-          <Route path="contact" element={<ContactPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ReactLenis root>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="services" element={<ServicesPage />} />
+            <Route path="pricing" element={<PricingPage />} />
+            <Route path="work" element={<WorkPage />} />
+            <Route path="testimonials" element={<TestimonialsPage />} />
+            <Route path="how-we-work" element={<ProcessPage />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="contact" element={<ContactPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ReactLenis>
   );
 }
 

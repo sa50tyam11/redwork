@@ -38,21 +38,17 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.1 }}
-              style={{
-                background: 'var(--bg-card)',
-                padding: '32px',
-                borderRadius: '16px',
-                border: '1px solid var(--border)'
-              }}
+              className="glass-card"
             >
-              <div style={{ display: 'flex', gap: '4px', color: 'var(--navy)', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', gap: '4px', color: 'var(--red)', marginBottom: '16px', fontSize: '1.2rem' }}>
                 ★★★★★
               </div>
-              <p style={{ color: 'var(--text-dim)', lineHeight: '1.6', marginBottom: '24px', fontStyle: 'italic' }}>
-                "{t.text}"
+              <p style={{ color: 'var(--text-dim)', lineHeight: '1.6', marginBottom: '24px', fontStyle: 'italic', position: 'relative' }}>
+                <span style={{ color: 'var(--red-dim)', fontSize: '2rem', position: 'absolute', top: '-10px', left: '-15px', opacity: 0.5 }}>"</span>
+                {t.text}
               </p>
               <div>
-                <h4 style={{ margin: 0, fontSize: '1.1rem' }}>{t.name}</h4>
+                <h4 style={{ margin: 0, fontSize: '1.1rem', fontFamily: 'var(--font-disp)' }}>{t.name}</h4>
                 <p style={{ margin: 0, color: 'var(--text-mute)', fontSize: '0.9rem', marginTop: '4px' }}>{t.role}</p>
               </div>
             </motion.div>

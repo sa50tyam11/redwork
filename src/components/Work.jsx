@@ -15,7 +15,7 @@ export default function Work({ onOpenBooking, preview = false }) {
 
         <div className="work-grid">
           <motion.a variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} href="https://muzaffarpurbangles.netlify.app" target="_blank" rel="noreferrer" className="work-card">
-           <div className="work-img" style={{ backgroundImage: "url('/ml.png')" }}>
+            <div className="work-img" style={{ backgroundImage: "url('/ml.png')" }}>
               <div className="work-hover"><span>View Live ↗</span></div>
             </div>
             <div className="work-info">
