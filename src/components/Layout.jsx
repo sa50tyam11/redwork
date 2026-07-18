@@ -17,7 +17,7 @@ export default function Layout() {
 
   return (
     <main style={{ background: 'var(--bg)', color: 'var(--text)' }}>
-      {pathname !== '/' && <Navbar onOpenBooking={onOpenBooking} />}
+      <Navbar onOpenBooking={onOpenBooking} />
       <Outlet context={{ onOpenBooking }} />
       <Footer />
       <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

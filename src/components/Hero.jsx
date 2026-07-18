@@ -47,30 +47,7 @@ export default function Hero() {
           <div className="absolute w-[300px] h-[500px] bg-[#e8251a]/5 blur-[70px] rounded-[30%] bottom-0 right-[20%] transform -rotate-12"></div>
         </div>
 
-        {/* Top Bar */}
-        <div className="absolute top-0 left-0 w-full h-10 md:h-12 flex z-40 border-b-2 border-white/20 font-mono text-base md:text-xl">
-          <div className="bg-[#111111] text-[#f0ede8] px-4 md:px-8 py-2 flex items-center border-r-2 border-white/20 w-auto whitespace-nowrap tracking-wide font-bold">
-            Redwork Studio
-          </div>
-          <div className="bg-[#080808] text-[#f0ede8] px-4 md:px-6 py-2 flex-grow flex items-center justify-center border-r-2 border-white/20 text-center whitespace-nowrap overflow-hidden text-ellipsis">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={captionIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="text-[#f0ede8]/70 font-ui text-sm font-semibold tracking-wider"
-              >
-                {captions[captionIndex]}
-              </motion.span>
-            </AnimatePresence>
-          </div>
-          <Link to="/contact" className="bg-[#e8251a] text-white hover:bg-[#111111] hover:text-[#f0ede8] transition-colors px-6 md:px-8 py-2 flex items-center font-ui font-bold tracking-widest uppercase text-xs md:text-sm cursor-pointer hidden sm:flex group">
-            Start Project
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="ml-2 transform group-hover:translate-x-1 transition-transform" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </Link>
-        </div>
+
 
         <div 
           className="relative z-10 w-full h-full flex flex-col justify-center px-4 md:px-12 pt-16"
