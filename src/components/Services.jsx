@@ -1,0 +1,106 @@
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+export default function Services({ onOpenBooking, preview = false }) {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  return (
+    <section className="section" id="services" style={{ position: 'relative', zIndex: 11, background: 'var(--bg)', padding: '120px 0' }}>
+      <div className="container">
+        
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} style={{ textAlign: 'center', marginBottom: '80px' }}>
+          <p className="label" style={{ marginBottom: '16px' }}>Our Expertise</p>
+          <h2 className="section-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>Digital Solutions</h2>
+        </motion.div>
+
+        {/* 2-Column Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
+          
+          {/* Card 1 */}
+          <motion.div 
+            variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            style={{ background: 'var(--bg-1)', border: '1px solid var(--glass-border)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
+          >
+            <div className="card-tag" style={{ background: 'transparent', border: '1px solid #7eb4ff', color: '#7eb4ff' }}>DISCORD</div>
+            <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-disp)', margin: '20px 0', color: 'var(--text)' }}>Discord Bot</h3>
+            <p style={{ color: 'var(--text-dim)', fontSize: '1rem', lineHeight: 1.7, marginBottom: preview ? '0' : '32px' }}>
+              {preview 
+                ? 'A custom Discord bot built for your server.' 
+                : 'A custom Discord bot built for your server — moderation, welcome messages, leveling systems, ticket support, or fully custom commands. We handle setup, hosting guidance, and a walkthrough so you\'re never stuck.'}
+            </p>
+            {!preview && (
+              <button className="btn-ghost-hero" onClick={onOpenBooking} style={{ padding: '10px 24px', fontSize: '0.8rem' }}>Get Started ↗</button>
+            )}
+          </motion.div>
+
+          {/* Card 2 (Highlight) */}
+          <motion.div 
+            variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.2 }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            style={{ background: 'linear-gradient(145deg, rgba(232,37,26,0.05) 0%, transparent 100%)', border: '1px solid rgba(232,37,26,0.2)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
+          >
+            <div className="card-tag" style={{ background: 'var(--red)', color: '#fff', border: 'none' }}>MOST POPULAR</div>
+            <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-disp)', margin: '20px 0', color: 'var(--text)' }}>Student / Academic Project</h3>
+            <p style={{ color: 'var(--text-dim)', fontSize: '1rem', lineHeight: 1.7, marginBottom: preview ? '0' : '32px' }}>
+              {preview 
+                ? 'End-to-end mini and major college projects.' 
+                : 'End-to-end mini and major college projects. Clean, working code, full documentation, a presentation deck, and dedicated viva prep — so you understand your own project inside out.'}
+            </p>
+            {!preview && (
+              <button className="btn-red" onClick={onOpenBooking} style={{ padding: '10px 24px', fontSize: '0.8rem' }}>Get Started ↗</button>
+            )}
+          </motion.div>
+
+          {/* Card 3 */}
+          <motion.div 
+            variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            style={{ background: 'var(--bg-1)', border: '1px solid var(--glass-border)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
+          >
+            <div className="card-tag" style={{ background: 'transparent', border: '1px solid var(--text-mute)', color: 'var(--text-dim)' }}>LOCAL BUSINESS</div>
+            <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-disp)', margin: '20px 0', color: 'var(--text)' }}>Small Business Website</h3>
+            <p style={{ color: 'var(--text-dim)', fontSize: '1rem', lineHeight: 1.7, marginBottom: preview ? '0' : '32px' }}>
+              {preview 
+                ? 'A simple, fast website for your gym, shop, or local service.' 
+                : 'A simple, fast website for your gym, shop, or local service. Mobile-first, WhatsApp button built in, Google Maps embed, and a contact form that actually works — live in days.'}
+            </p>
+            {!preview && (
+              <button className="btn-ghost-hero" onClick={onOpenBooking} style={{ padding: '10px 24px', fontSize: '0.8rem' }}>Get Started ↗</button>
+            )}
+          </motion.div>
+
+          {/* Card 4 */}
+          <motion.div 
+            variants={cardVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.2 }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            style={{ background: 'var(--bg-1)', border: '1px solid var(--glass-border)', borderRadius: '24px', padding: '48px', position: 'relative', overflow: 'hidden' }}
+          >
+            <div className="card-tag" style={{ background: 'transparent', border: '1px solid #7eb4ff', color: '#7eb4ff' }}>LAUNCH</div>
+            <h3 style={{ fontSize: '2rem', fontFamily: 'var(--font-disp)', margin: '20px 0', color: 'var(--text)' }}>Landing Page</h3>
+            <p style={{ color: 'var(--text-dim)', fontSize: '1rem', lineHeight: 1.7, marginBottom: preview ? '0' : '32px' }}>
+              {preview 
+                ? 'A focused single-page site for a launch, offer, or personal brand.' 
+                : 'A focused single-page site for a launch, offer, or personal brand. Built fast, loads fast, and gets straight to the point.'}
+            </p>
+            {!preview && (
+              <button className="btn-ghost-hero" onClick={onOpenBooking} style={{ padding: '10px 24px', fontSize: '0.8rem' }}>Get Started ↗</button>
+            )}
+          </motion.div>
+
+        </div>
+
+        {preview && (
+          <div style={{ textAlign: 'center', marginTop: '60px' }}>
+            <Link to="/services" className="btn-ghost-hero" style={{ padding: '16px 32px', fontSize: '1rem', display: 'inline-block' }}>
+              See all services & pricing →
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
