@@ -157,8 +157,9 @@ const CardNav = ({
             <div className="hamburger-line" />
           </div>
 
-          <Link to="/" className="logo-container" style={{ color: menuColor || '#000' }}>
-            RED<em>WORK</em>
+          <Link to="/" className="logo-container">
+            <span style={{ color: '#fff' }}>RED</span>
+            <em style={{ color: menuColor || '#000' }}>WORK</em>
           </Link>
 
           <button
