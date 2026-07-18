@@ -5,11 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        disp: ['var(--font-disp)'],
+        ui: ['var(--font-ui)'],
+        mono: ['var(--font-mono)'],
+      }
+    },
   },
   corePlugins: {
     preflight: false, // Prevents tailwind from resetting base styles and messing up index.css
   },
   plugins: [],
 }
-
