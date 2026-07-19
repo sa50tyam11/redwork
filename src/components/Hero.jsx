@@ -66,7 +66,7 @@ export default function Hero() {
           className="text-[1.1rem] font-normal leading-[1.65] text-white mb-8 max-w-[540px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
           style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}
         >
-          Discord bots, final-year projects, and websites for small businesses — delivered in days, with real people to talk to along the way.
+          Discord bots, final-year projects, and websites for businesses — delivered in days, with real people to talk to along the way.
         </motion.p>
 
         <motion.div

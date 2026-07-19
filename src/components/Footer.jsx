@@ -1,141 +1,93 @@
-import { FaLinkedin, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
-
-const LogoIcon = () => (
-  <div className="w-8 h-8 bg-[var(--red)] rounded-[8px] flex items-center justify-center">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 20C4 20 4 14 10 10C16 6 20 4 20 4C20 4 18 8 14 14C10 20 4 20 4 20Z" fill="white" />
-      <path d="M4 20L10 14" stroke="white" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  </div>
-);
-
-const FooterCard = () => {
-  const socials = [
-    { name: 'LinkedIn', icon: FaLinkedin },
-    { name: 'Twitter', icon: FaTwitter },
-    { name: 'Instagram', icon: FaInstagram },
-  ];
-
-  return (
-    <div className="w-full max-w-6xl mx-auto">
-      <div className="bg-[var(--bg-1)] rounded-[48px] border border-[var(--glass-border)] shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden">
-        <div className="bg-[var(--bg-2)] rounded-[40px] m-2 shadow-sm border border-[var(--glass-border)]">
-          <div className="p-8 md:p-10 lg:p-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-            
-            <div className="lg:col-span-2 space-y-8">
-              <div className="flex items-center gap-2.5">
-                <LogoIcon />
-                <span className="text-[26px] font-bold tracking-tight text-[var(--text)]" style={{ fontFamily: 'var(--font-disp)' }}>
-                  RED<em className="text-[var(--red)] not-italic">WORK</em>
-                </span>
-              </div>
-              <p className="text-[var(--text-dim)] leading-relaxed text-[16px] font-normal max-w-[320px]">
-                Bots, Projects & Small Business Websites. Premium strategic solutions designed to elevate your brand presence.
-              </p>
-              <p className="text-[14px] text-[var(--text-mute)] max-w-[320px]">
-                Maintained and managed by our main website,{' '}
-                <a href="https://senostudio.in" target="_blank" rel="noreferrer" className="text-[var(--text-dim)] hover:text-[var(--red)] underline transition-colors">
-                  senostudio.in
-                </a>.
-              </p>
-              <div className="flex gap-4">
-                {socials.map((social, idx) => {
-                  const Icon = social.icon;
-                  return (
-                    <button key={idx} className="w-[44px] h-[44px] flex items-center justify-center rounded-xl border border-[var(--glass-border)] bg-[var(--bg-1)] shadow-[0_1px_2px_rgba(0,0,0,0.2)] hover:bg-[var(--glass)] transition-all active:scale-95 group">
-                      <Icon className="w-5 h-5 text-[var(--text-dim)] group-hover:text-[var(--text)] transition-colors" />
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <h4 className="text-[14px] font-medium text-[var(--text-mute)] uppercase tracking-wider">Pages</h4>
-              <ul className="space-y-4">
-                {['Services', 'Work', 'Pricing', 'Testimonials'].map(link => (
-                  <li key={link}>
-                    <Link to={`/${link.toLowerCase()}`} className="text-[15px] font-medium text-[var(--text-dim)] hover:text-[var(--red)] transition-colors">{link}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="space-y-6">
-              <h4 className="text-[14px] font-medium text-[var(--text-mute)] uppercase tracking-wider">Company</h4>
-              <ul className="space-y-4">
-                <li><Link to="/how-we-work" className="text-[15px] font-medium text-[var(--text-dim)] hover:text-[var(--red)] transition-colors">How We Work</Link></li>
-                <li><Link to="/contact" className="text-[15px] font-medium text-[var(--text-dim)] hover:text-[var(--red)] transition-colors">Contact</Link></li>
-                <li><a href="https://senostudio.in" target="_blank" rel="noreferrer" className="text-[15px] font-medium text-[var(--text-dim)] hover:text-[var(--red)] transition-colors">Seno Studio</a></li>
-              </ul>
-            </div>
-
-            <div className="space-y-6">
-              <h4 className="text-[14px] font-medium text-[var(--text-mute)] uppercase tracking-wider">Connect</h4>
-              <div className="pt-2">
-                <a href="https://wa.me/917667261838" target="_blank" rel="noreferrer" className="flex items-center gap-3 bg-[var(--red-dim)] border border-[rgba(232,37,26,0.3)] text-[var(--red)] px-5 py-3 rounded-xl hover:bg-[rgba(232,37,26,0.25)] hover:border-[rgba(232,37,26,0.4)] hover:-translate-y-1 transition-all duration-200">
-                  <FaWhatsapp className="w-5 h-5" />
-                  <span className="font-semibold text-[15px]">Chat on WhatsApp</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-5 flex flex-col md:flex-row justify-between items-center gap-6 text-[15px]">
-          <p className="text-[var(--text-mute)] font-medium">© {new Date().getFullYear()} Redwork. All rights reserved.</p>
-          <div className="flex flex-row gap-8 text-[var(--text-mute)] font-medium items-center">
-            <a href="#" className="hover:text-[var(--text)] transition-colors">Legal Center</a>
-            <div className="w-[1px] h-4 bg-[var(--glass-border)]" />
-            <a href="#" className="hover:text-[var(--text)] transition-colors">User Agreement</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const GlassText = () => (
-  <div className="relative w-full flex items-center justify-center select-none pt-0">
-    <svg className="absolute w-0 h-0" aria-hidden="true" focusable="false">
-      <defs>
-        <filter id="glass-effect" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000000" floodOpacity="0.8" result="outer-shadow"/>
-          <feComponentTransfer in="SourceAlpha" result="alpha"><feFuncA type="linear" slope="1" /></feComponentTransfer>
-          <feOffset in="alpha" dx="0" dy="4" result="offset-white" />
-          <feGaussianBlur in="offset-white" stdDeviation="4" result="blur-white" />
-          <feComposite in="alpha" in2="blur-white" operator="out" result="inner-white-mask" />
-          <feFlood floodColor="#ffffff" floodOpacity="0.25" result="white-fill" />
-          <feComposite in="white-fill" in2="inner-white-mask" operator="in" result="inner-white-final" />
-          <feGaussianBlur in="alpha" stdDeviation="6" result="blur-black" />
-          <feComposite in="alpha" in2="blur-black" operator="out" result="inner-black-mask" />
-          <feFlood floodColor="#000000" floodOpacity="0.5" result="black-fill" />
-          <feComposite in="black-fill" in2="inner-black-mask" operator="in" result="inner-black-final" />
-          <feMerge>
-            <feMergeNode in="outer-shadow" />
-            <feMergeNode in="SourceGraphic" />
-            <feMergeNode in="inner-white-final" />
-            <feMergeNode in="inner-black-final" />
-          </feMerge>
-        </filter>
-      </defs>
-    </svg>
-    <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }} className="relative">
-      <h1 className="text-[min(20vw,320px)] font-bold tracking-tighter leading-none select-none px-4" style={{ filter: 'url(#glass-effect)', fontFamily: 'var(--font-disp)' }}>
-        <span className="text-white">red</span><span className="text-[var(--red)]">work</span>
-      </h1>
-    </motion.div>
-  </div>
-);
+import { Music2 } from 'lucide-react';
+import { FaFacebook, FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="w-full flex flex-col items-center gap-0 bg-[var(--bg)] pt-8 p-4 font-sans antialiased mt-12">
-      <FooterCard />
-      <GlassText />
+    <footer className="relative w-full min-h-[115vh] overflow-x-hidden flex flex-col items-center font-sans selection:bg-white/20 selection:text-white">
+      {/* Immersive Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-[0]"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260429_114316_1c7889ad-2885-410e-b493-98119fee0ddb.mp4"
+      />
+      
+      {/* Content Wrapper */}
+      <div className="relative z-10 w-full max-w-7xl px-4 flex flex-col flex-1 justify-between">
+        {/* Upper CTA Placeholder to push footer to the bottom */}
+        <div className="mt-32 text-center">
+        </div>
+
+        {/* The Footer */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          className="liquid-glass w-full rounded-3xl p-6 md:p-10 text-white/70 mt-32 md:mt-64 mb-8"
+        >
+          {/* Top Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-10">
+            <div className="md:col-span-5">
+              <div className="flex items-center gap-2 text-white mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="var(--red)">
+                  <path d="M 4.688 136 C 68.373 136 120 187.627 120 251.312 C 120 252.883 119.967 254.445 119.905 256 L 0 256 L 0 136.096 C 1.555 136.034 3.117 136 4.688 136 Z M 251.312 136 C 252.883 136 254.445 136.034 256 136.096 L 256 256 L 136.095 256 C 136.032 254.438 136.001 252.875 136 251.312 C 136 187.627 187.627 136 251.312 136 Z M 119.905 0 C 119.967 1.555 120 3.117 120 4.688 C 120 68.373 68.373 120 4.687 120 C 3.117 120 1.555 119.967 0 119.905 L 0 0 Z M 256 119.905 C 254.445 119.967 252.883 120 251.312 120 C 187.627 120 136 68.373 136 4.687 C 136 3.117 136.033 1.555 136.095 0 L 256 0 Z" />
+                </svg>
+                <span className="text-xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-disp)' }}>RED<em className="text-[var(--red)] not-italic">WORK</em></span>
+              </div>
+              <p className="text-sm leading-relaxed max-w-sm">
+                Bots, Projects & Business Websites. Premium strategic solutions designed to elevate your brand presence. Maintained by <a href="https://senostudio.in" target="_blank" rel="noreferrer" className="text-white hover:text-[var(--red)] transition-colors underline">senostudio.in</a>.
+              </p>
+            </div>
+            
+            <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-sm uppercase tracking-wider text-white font-medium mb-4">Pages</h3>
+                <ul className="text-xs space-y-2">
+                  <li><a href="/services" className="hover:text-white transition-colors">Services</a></li>
+                  <li><a href="/work" className="hover:text-white transition-colors">Work</a></li>
+                  <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
+                  <li><a href="/testimonials" className="hover:text-white transition-colors">Testimonials</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm uppercase tracking-wider text-white font-medium mb-4">Company</h3>
+                <ul className="text-xs space-y-2">
+                  <li><a href="/how-we-work" className="hover:text-white transition-colors">How We Work</a></li>
+                  <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
+                  <li><a href="https://senostudio.in" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Seno Studio</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm uppercase tracking-wider text-white font-medium mb-4">Connect</h3>
+                <ul className="text-xs space-y-2">
+                  <li><a href="https://wa.me/917667261838" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">Chat on WhatsApp</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">Legal Center</a></li>
+                  <li><a href="#" className="hover:text-white transition-colors">User Agreement</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
+            <p className="text-[10px] uppercase tracking-widest opacity-50">© {new Date().getFullYear()} Redwork. All rights reserved.</p>
+            <div className="flex items-center gap-4">
+              <span className="text-[10px] uppercase tracking-widest opacity-50">Join the Journey:</span>
+              <div className="flex items-center gap-3">
+                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><Music2 size={16} /></a>
+                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaFacebook size={16} /></a>
+                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaTwitter size={16} /></a>
+                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaYoutube size={16} /></a>
+                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaInstagram size={16} /></a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </footer>
   );
 }

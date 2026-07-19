@@ -6,30 +6,36 @@ const SERVICES_DATA = [
   {
     id: 's1',
     title: 'Discord Bot',
-    desc: 'Custom Discord bot — moderation, welcome messages, leveling, tickets, or fully custom commands.',
-    price: 'Starting at ₹1,499',
-    tags: ['discord', 'bot', 'server', 'moderation', 'automation', 'community', 'price']
+    desc: 'Professional Discord solutions for communities of all sizes.',
+    price: '₹1,499 - ₹2,999+',
+    tags: ['discord', 'bot', 'server', 'moderation', 'automation', 'community', 'price'],
+    tiers: [
+      { name: 'Basic Bot', price: '₹1,499', features: ['Greetings & Welcomes', 'Basic Moderation', 'Standard Commands'] },
+      { name: 'Custom Bot', price: '₹2,999+', features: ['Advanced Logic', 'API Integrations', 'Custom Systems'] }
+    ]
   },
   {
     id: 's2',
     title: 'Student / Academic Project',
-    desc: 'Mini & major college projects — working code, documentation, PPT, and viva prep included.',
-    price: 'Starting at ₹799',
-    tags: ['student', 'project', 'college', 'academic', 'viva', 'mini', 'major', 'final', 'year', 'price']
+    desc: 'End-to-end projects for your college requirements. We ensure you understand the code.',
+    price: '₹800 - ₹3,000+',
+    tags: ['student', 'project', 'college', 'academic', 'viva', 'mini', 'major', 'final', 'year', 'price'],
+    tiers: [
+      { name: 'Standard', price: '₹800 - ₹2,000', features: ['Clean Working Code', 'Basic Documentation', 'Standard Setup'] },
+      { name: 'Heavy/Major', price: '₹2,000 - ₹3,000+', features: ['Advanced Features', 'Database Integration', 'Viva Prep & PPT'] }
+    ]
   },
   {
     id: 's3',
-    title: 'Small Business Website',
-    desc: 'Simple, fast website for local businesses — gyms, shops, clinics. WhatsApp button, Google Maps, contact form.',
-    price: 'Starting at ₹3,999',
-    tags: ['business', 'gym', 'shop', 'local', 'small', 'website', 'whatsapp', 'price']
-  },
-  {
-    id: 's4',
-    title: 'Landing Page',
-    desc: 'Single-page site for a launch, offer, or personal brand. Fast to build, fast to load.',
-    price: 'Starting at ₹1,999',
-    tags: ['landing', 'page', 'single', 'launch', 'offer', 'fast', 'price']
+    title: 'Business Website',
+    desc: 'Establish your online presence with a fast, modern, and conversion-focused website.',
+    price: '₹4,999 - Custom',
+    tags: ['business', 'gym', 'shop', 'local', 'small', 'website', 'whatsapp', 'price', 'landing', 'page'],
+    tiers: [
+      { name: 'Basic', price: '₹4,999', features: ['Landing / Front Page', 'Mobile Responsive', 'Contact Forms'] },
+      { name: 'Value', price: '₹8,999', features: ['Multi-page Site', 'WhatsApp Integration', 'Business Features'] },
+      { name: 'Heavy', price: 'Custom Quote', features: ['Heavy Custom Features', 'Complex Backend', 'Consultation Required'] }
+    ]
   }
 ];
 
@@ -209,22 +215,46 @@ export default function AiSearch({ compact = false }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ background: 'var(--bg-2)', border: '1px solid var(--glass-border)', padding: '32px', borderRadius: '24px', marginBottom: '20px' }}
+                    style={{ background: 'var(--bg-1)', border: '1px solid var(--glass-border)', padding: '32px', borderRadius: '24px', marginBottom: '24px' }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px', gap: '16px', flexWrap: 'wrap' }}>
-                      <h4 style={{ fontFamily: 'var(--font-disp)', fontSize: '1.5rem', color: 'var(--text)', margin: 0 }}>
+                      <h4 style={{ fontFamily: 'var(--font-disp)', fontSize: '2rem', color: 'var(--text)', margin: 0 }}>
                         {item.title}
                       </h4>
-                      {/* Price Badge integrated into search results */}
-                      <div style={{ background: 'rgba(217,58,43,0.08)', border: '1px solid rgba(217,58,43,0.2)', color: 'var(--red)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', padding: '6px 12px', borderRadius: '100px', fontWeight: 'bold' }}>
+                      <div style={{ background: 'rgba(217,58,43,0.1)', border: '1px solid rgba(217,58,43,0.3)', color: 'var(--red)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', padding: '8px 16px', borderRadius: '100px', fontWeight: 'bold' }}>
                         {item.price}
                       </div>
                     </div>
-                    <p style={{ color: 'var(--text-dim)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '24px', maxWidth: '600px' }}>
+                    <p style={{ color: 'var(--text-dim)', fontSize: '1.1rem', lineHeight: 1.7, marginBottom: '32px', maxWidth: '700px' }}>
                       {item.desc}
                     </p>
-                    <button className="btn-ghost-hero" style={{ padding: '8px 20px', fontSize: '0.8rem' }} onClick={() => window.open('https://wa.me/917667261838', '_blank')}>
-                      Discuss Requirements ↗
+                    
+                    {item.tiers && (
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', marginBottom: '32px' }}>
+                        {item.tiers.map((tier, tIndex) => (
+                          <motion.div 
+                            key={tIndex}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: (i * 0.1) + 0.2 + (tIndex * 0.1), duration: 0.4 }}
+                            style={{ background: 'var(--bg-2)', border: '1px solid var(--glass-border)', padding: '24px', borderRadius: '16px', display: 'flex', flexDirection: 'column' }}
+                          >
+                            <h5 style={{ fontFamily: 'var(--font-ui)', fontSize: '1.1rem', color: 'var(--text)', margin: '0 0 8px 0', fontWeight: 'bold' }}>{tier.name}</h5>
+                            <div style={{ fontFamily: 'var(--font-disp)', fontSize: '1.4rem', color: 'var(--red)', fontWeight: '900', marginBottom: '16px' }}>{tier.price}</div>
+                            <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>
+                              {tier.features.map((feat, fIndex) => (
+                                <li key={fIndex} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-dim)', fontSize: '0.9rem' }}>
+                                  <span style={{ color: 'var(--red)', fontSize: '1.2rem' }}>•</span> {feat}
+                                </li>
+                              ))}
+                            </ul>
+                          </motion.div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    <button className="btn-red" style={{ padding: '12px 28px', fontSize: '0.95rem' }} onClick={() => window.open('https://wa.me/917667261838', '_blank')}>
+                      Discuss Your Project ↗
                     </button>
                   </motion.div>
                 ))}

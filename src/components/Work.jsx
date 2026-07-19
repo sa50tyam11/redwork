@@ -8,7 +8,7 @@ export default function Work({ onOpenBooking, preview = false }) {
   };
 
   return (
-    <section className="section section-dark" id="work" style={{ padding: preview ? '80px 0' : '120px 0' }}>
+    <section className="section" id="work" style={{ padding: preview ? '80px 0' : '120px 0', background: '#FAF6F2', color: 'var(--text)' }}>
       <div className="container">
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="label">Portfolio</motion.p>
         <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-title">Recent Work</motion.h2>

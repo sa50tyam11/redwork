@@ -69,7 +69,7 @@ ${data.message}`;
                 <option value="" disabled>Select a service</option>
                 <option value="Discord Bot">Discord Bot</option>
                 <option value="Student Project">Student Project</option>
-                <option value="Small Business Website">Small Business Website</option>
+                <option value="Business Website">Business Website</option>
                 <option value="Landing Page">Landing Page</option>
                 <option value="Other / Not Sure">Other / Not Sure</option>
               </select>

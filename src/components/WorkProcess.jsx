@@ -24,7 +24,7 @@ export default function WorkProcess() {
       ref={containerRef} 
       style={{ 
         height: '300vh', 
-        background: 'var(--bg)', // Explicit black background
+        background: '#151112', // Charcoal background
         position: 'relative',
         zIndex: 20 // Ensure it's above previous sections
       }}
@@ -43,7 +43,7 @@ export default function WorkProcess() {
           
           <div className="process-info">
             <p className="label" style={{ color: 'var(--red)' }}>The Methodology</p>
-            <h2 style={{ fontSize: '3rem', fontWeight: 900, color: 'var(--text)', margin: '10px 0' }}>How We<br/>Work</h2>
+            <h2 style={{ fontSize: '3rem', fontWeight: 900, color: '#ffffff', margin: '10px 0' }}>How We<br/>Work</h2>
           </div>
 
           <div style={{ position: 'relative', paddingLeft: '40px' }}>
@@ -61,7 +61,7 @@ export default function WorkProcess() {
               return (
                 <motion.div key={step.id} style={{ opacity, marginBottom: '40px' }}>
                    <span style={{ color: 'var(--red)', fontSize: '0.8rem', fontFamily: 'monospace' }}>[{step.id}]</span>
-                   <h3 style={{ color: 'var(--text)', fontSize: '1.5rem', margin: '5px 0' }}>{step.title}</h3>
+                   <h3 style={{ color: '#ffffff', fontSize: '1.5rem', margin: '5px 0' }}>{step.title}</h3>
                    <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem', maxWidth: '400px' }}>{step.text}</p>
                 </motion.div>
               );
