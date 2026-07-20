@@ -1,93 +1,129 @@
-import { motion } from 'motion/react';
-import { Music2 } from 'lucide-react';
-import { FaFacebook, FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa';
+import React from 'react';
+import { FiMail, FiPhone, FiMapPin, FiMessageCircle, FiCode, FiExternalLink, FiGlobe } from 'react-icons/fi';
+import { FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="relative w-full min-h-[115vh] overflow-x-hidden flex flex-col items-center font-sans selection:bg-white/20 selection:text-white">
-      {/* Immersive Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-[0]"
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260429_114316_1c7889ad-2885-410e-b493-98119fee0ddb.mp4"
-      />
-      
-      {/* Content Wrapper */}
-      <div className="relative z-10 w-full max-w-7xl px-4 flex flex-col flex-1 justify-between">
-        {/* Upper CTA Placeholder to push footer to the bottom */}
-        <div className="mt-32 text-center">
+    <footer className="relative w-full bg-[#0B0C10] text-white pt-24 overflow-hidden flex flex-col items-center">
+      <div className="w-full max-w-7xl px-6 md:px-12 relative z-10 flex flex-col">
+        
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+          
+          {/* Logo & Intro */}
+          <div className="col-span-1 md:col-span-4 pr-0 md:pr-10">
+            <a href="/" className="flex items-center gap-1.5 mb-6" style={{ fontFamily: 'var(--font-disp)', fontSize: '1.5rem', letterSpacing: '-0.04em' }}>
+              <span className="text-white italic font-black">RED</span>
+              <span className="italic font-black text-[#e8251a]">WORK</span>
+              <span className="text-[10px] font-sans font-medium text-white/50 uppercase tracking-widest mt-1 ml-2">Web Studio</span>
+            </a>
+            <p className="text-white/60 text-sm leading-relaxed max-w-[280px]">
+              Engineering elite digital experiences. We architect uncompromising software for world-class brands.
+            </p>
+          </div>
+
+          {/* Services */}
+          <div className="col-span-1 md:col-span-3">
+            <h3 className="text-xl mb-6 font-serif italic text-white/90 font-medium">Services</h3>
+            <ul className="space-y-4 text-white/60 text-sm font-medium">
+              <li><a href="/#services" className="hover:text-white transition-colors">Web Development</a></li>
+              <li><a href="/#services" className="hover:text-white transition-colors">UI/UX Design</a></li>
+              <li><a href="/#services" className="hover:text-white transition-colors">Full-Stack Solutions</a></li>
+              <li><a href="/#services" className="hover:text-white transition-colors">Deployment & Scaling</a></li>
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div className="col-span-1 md:col-span-2">
+            <h3 className="text-xl mb-6 font-serif italic text-white/90 font-medium">Quick Links</h3>
+            <ul className="space-y-4 text-white/60 text-sm font-medium">
+              <li><a href="/#work" className="hover:text-white transition-colors">Selected Work</a></li>
+              <li><a href="/#about" className="hover:text-white transition-colors">About Us</a></li>
+              <li>
+                <a href="/#contact" className="hover:text-white transition-colors flex items-center gap-2">
+                  Start a Project
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#e8251a]"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Get In Touch */}
+          <div className="col-span-1 md:col-span-3">
+            <h3 className="text-xl mb-6 font-serif italic text-white/90 font-medium">Get In Touch</h3>
+            <ul className="space-y-4 text-white/60 text-sm font-medium">
+              <li className="flex items-center gap-3">
+                <FiMail className="w-4 h-4 text-[#e8251a]" />
+                <a href="mailto:senowebstudio@gmail.com" className="hover:text-white transition-colors">senowebstudio@gmail.com</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <FiPhone className="w-4 h-4 text-[#e8251a]" />
+                <a href="tel:+917667261838" className="hover:text-white transition-colors">+91 76672 61838</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <FiMapPin className="w-4 h-4 text-[#e8251a]" />
+                <span>Operating across India</span>
+              </li>
+            </ul>
+          </div>
+
         </div>
 
-        {/* The Footer */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-          className="liquid-glass w-full rounded-3xl p-6 md:p-10 text-white/70 mt-32 md:mt-64 mb-8"
-        >
-          {/* Top Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 mb-10">
-            <div className="md:col-span-5">
-              <div className="flex items-center gap-2 text-white mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="var(--red)">
-                  <path d="M 4.688 136 C 68.373 136 120 187.627 120 251.312 C 120 252.883 119.967 254.445 119.905 256 L 0 256 L 0 136.096 C 1.555 136.034 3.117 136 4.688 136 Z M 251.312 136 C 252.883 136 254.445 136.034 256 136.096 L 256 256 L 136.095 256 C 136.032 254.438 136.001 252.875 136 251.312 C 136 187.627 187.627 136 251.312 136 Z M 119.905 0 C 119.967 1.555 120 3.117 120 4.688 C 120 68.373 68.373 120 4.687 120 C 3.117 120 1.555 119.967 0 119.905 L 0 0 Z M 256 119.905 C 254.445 119.967 252.883 120 251.312 120 C 187.627 120 136 68.373 136 4.687 C 136 3.117 136.033 1.555 136.095 0 L 256 0 Z" />
-                </svg>
-                <span className="text-xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-disp)' }}>RED<em className="text-[var(--red)] not-italic">WORK</em></span>
-              </div>
-              <p className="text-sm leading-relaxed max-w-sm">
-                Bots, Projects & Business Websites. Premium strategic solutions designed to elevate your brand presence. Maintained by <a href="https://senostudio.in" target="_blank" rel="noreferrer" className="text-white hover:text-[var(--red)] transition-colors underline">senostudio.in</a>.
-              </p>
-            </div>
-            
-            <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
-              <div>
-                <h3 className="text-sm uppercase tracking-wider text-white font-medium mb-4">Pages</h3>
-                <ul className="text-xs space-y-2">
-                  <li><a href="/services" className="hover:text-white transition-colors">Services</a></li>
-                  <li><a href="/work" className="hover:text-white transition-colors">Work</a></li>
-                  <li><a href="/pricing" className="hover:text-white transition-colors">Pricing</a></li>
-                  <li><a href="/testimonials" className="hover:text-white transition-colors">Testimonials</a></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-sm uppercase tracking-wider text-white font-medium mb-4">Company</h3>
-                <ul className="text-xs space-y-2">
-                  <li><a href="/how-we-work" className="hover:text-white transition-colors">How We Work</a></li>
-                  <li><a href="/contact" className="hover:text-white transition-colors">Contact</a></li>
-                  <li><a href="https://senostudio.in" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Seno Studio</a></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-sm uppercase tracking-wider text-white font-medium mb-4">Connect</h3>
-                <ul className="text-xs space-y-2">
-                  <li><a href="https://wa.me/917667261838" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">Chat on WhatsApp</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">Legal Center</a></li>
-                  <li><a href="#" className="hover:text-white transition-colors">User Agreement</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        {/* Divider */}
+        <div className="w-full h-[1px] bg-white/10 mb-8"></div>
 
-          {/* Bottom Bar */}
-          <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
-            <p className="text-[10px] uppercase tracking-widest opacity-50">© {new Date().getFullYear()} Redwork. All rights reserved.</p>
-            <div className="flex items-center gap-4">
-              <span className="text-[10px] uppercase tracking-widest opacity-50">Join the Journey:</span>
-              <div className="flex items-center gap-3">
-                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><Music2 size={16} /></a>
-                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaFacebook size={16} /></a>
-                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaTwitter size={16} /></a>
-                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaYoutube size={16} /></a>
-                <a href="#" className="opacity-70 hover:opacity-100 transition-colors hover:text-white"><FaInstagram size={16} /></a>
-              </div>
-            </div>
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-white/50 text-xs font-medium pb-8 md:pb-0 z-20">
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-white transition-colors"><FaInstagram className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-white transition-colors"><FiMessageCircle className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-white transition-colors"><FiCode className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-white transition-colors"><FiExternalLink className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-white transition-colors"><FiGlobe className="w-4 h-4" /></a>
           </div>
-        </motion.div>
+          
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-right">
+            <div className="flex gap-4">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms & Security</a>
+            </div>
+            <span>© 2026 REDWORK. All rights reserved. Maintained by <a href="https://senostudio.in" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">senostudio.in</a></span>
+          </div>
+        </div>
+
       </div>
+
+      {/* Giant REDWORK Background Text */}
+      <div className="w-full overflow-hidden flex justify-center mt-[-40px] md:mt-[-60px] relative z-0 pointer-events-none select-none">
+        <h1 
+          className="font-black text-transparent leading-none"
+          style={{ 
+            fontFamily: 'var(--font-disp)',
+            fontSize: 'clamp(60px, 13.5vw, 250px)',
+            WebkitTextStroke: '1px rgba(232, 37, 26, 0.4)',
+            whiteSpace: 'nowrap',
+            transform: 'translateY(25%)'
+          }}
+        >
+          REDWORK
+        </h1>
+      </div>
+
+      {/* WhatsApp Floating Button */}
+      <a 
+        href="https://wa.me/917667261838" 
+        target="_blank" 
+        rel="noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#1A2E23] border border-[#25D366]/20 rounded-full pl-5 pr-1.5 py-1.5 hover:bg-[#1f382a] transition-all group shadow-2xl"
+      >
+        <span className="text-[10px] font-bold tracking-[0.2em] text-white/90 uppercase hidden sm:block">Chat With Us</span>
+        <div className="w-10 h-10 bg-[#25D366] rounded-full flex items-center justify-center group-hover:scale-105 transition-transform shadow-lg">
+          <svg className="w-5 h-5 text-white ml-[1px]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+        </div>
+      </a>
+
     </footer>
   );
 }

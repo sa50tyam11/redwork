@@ -8,6 +8,7 @@ import TestimonialsPage from './pages/TestimonialsPage';
 import ProcessPage from './pages/ProcessPage';
 import SearchPage from './pages/SearchPage';
 import ContactPage from './pages/ContactPage';
+import NotFound from './pages/NotFound';
 
 import { ReactLenis } from 'lenis/react';
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="search" element={<SearchPage />} />
             <Route path="contact" element={<ContactPage />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </ReactLenis>
