@@ -88,7 +88,7 @@ export default function BookingModal({ isOpen, onClose }) {
           <div className="modal-step active">
             <h2 className="modal-title">What do you need?</h2>
             <div className="service-options">
-              {['Business Website', 'Landing Page', 'Portfolio Website', 'Student Project'].map((opt) => (
+              {['Web Development', 'UI/UX Design', 'Full-Stack Solutions', 'Deployment & Scaling'].map((opt) => (
                 <button 
                   key={opt}
                   className={`service-option ${service === opt ? 'selected' : ''}`}

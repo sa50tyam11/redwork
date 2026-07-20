@@ -67,11 +67,11 @@ ${data.message}`;
               <label htmlFor="cf-service">Service Needed</label>
               <select id="cf-service" name="service" defaultValue="">
                 <option value="" disabled>Select a service</option>
-                <option value="Discord Bot">Discord Bot</option>
-                <option value="Student Project">Student Project</option>
-                <option value="Business Website">Business Website</option>
-                <option value="Landing Page">Landing Page</option>
-                <option value="Other / Not Sure">Other / Not Sure</option>
+                <option value="Web Development">Web Development</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+                <option value="Full-Stack Solutions">Full-Stack Solutions</option>
+                <option value="Deployment & Scaling">Deployment & Scaling</option>
+                <option value="Other">Other</option>
               </select>
             </div>
           </div>
