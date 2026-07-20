@@ -6,13 +6,13 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import './CardNav.css';
 
 export default function CardNav({ items, onOpenBooking }) {
-  const [isOpen, setIsOpen]       = useState(false);
-  const [scrolled, setScrolled]   = useState(false);
-  const overlayRef  = useRef(null);
-  const itemEls     = useRef([]);
-  const footerRef   = useRef(null);
-  const tlRef       = useRef(null);
-  const location    = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const overlayRef = useRef(null);
+  const itemEls = useRef([]);
+  const footerRef = useRef(null);
+  const tlRef = useRef(null);
+  const location = useLocation();
 
   /* ── Scroll ──────────────────────────────────────────────── */
   useEffect(() => {
@@ -42,10 +42,10 @@ export default function CardNav({ items, onOpenBooking }) {
 
   /* ── Build GSAP timeline ─────────────────────────────────── */
   const buildTl = useCallback(() => {
-    const overlay  = overlayRef.current;
-    const inner    = document.querySelector('.pnav-overlay-inner');
-    const els      = itemEls.current.filter(Boolean);
-    const footer   = footerRef.current;
+    const overlay = overlayRef.current;
+    const inner = document.querySelector('.pnav-overlay-inner');
+    const els = itemEls.current.filter(Boolean);
+    const footer = footerRef.current;
     if (!overlay || !inner) return null;
 
     const tl = gsap.timeline({ paused: true });

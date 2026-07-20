@@ -1,372 +1,213 @@
-/* ============================================================
-   REDWORK HERO — Cinematic Dark-Red Agency
-   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-/* ─── Section shell ─────────────────────────────────────────── */
 .rw-hero {
   position: relative;
   width: 100%;
-  min-height: 100svh;
+  min-height: 100vh;
   overflow: hidden;
-  background: #060404;
+  background-color: #C1272D;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: flex-end;
 }
 
-/* ─── Background photo ─────────────────────────────────────── */
-.rw-hero__photo {
+.rw-hero__bg {
   position: absolute;
   inset: 0;
   background-image: url('/hero.png');
   background-size: cover;
-  background-position: center 28%;
+  background-position: right center;
   background-repeat: no-repeat;
-  filter: brightness(0.28) saturate(1.15);
+  mix-blend-mode: multiply;
   z-index: 0;
 }
 
-/* ─── Atmospheric red glow (mirrors the hero photo's light) ─── */
-.rw-hero__glow {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    radial-gradient(ellipse 75% 65% at 62% 35%, rgba(232,37,26,0.26) 0%, rgba(180,20,10,0.1) 45%, transparent 72%);
-  pointer-events: none;
-}
-
-/* ─── Vignette ──────────────────────────────────────────────── */
-.rw-hero__vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: radial-gradient(ellipse 130% 110% at 50% 50%, transparent 35%, rgba(4,2,2,0.82) 100%);
-  pointer-events: none;
-}
-
-/* ─── Bottom fade into site bg ─────────────────────────────── */
-.rw-hero__fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 35vh;
-  z-index: 3;
-  background: linear-gradient(to bottom, transparent, #0d0d0f);
-  pointer-events: none;
-}
-
-/* ─── Scan-line texture overlay ────────────────────────────── */
-.rw-hero__scanlines {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.03) 2px,
-    rgba(0,0,0,0.03) 4px
-  );
-  pointer-events: none;
-}
-
-/* ─── Red horizontal accent line ───────────────────────────── */
-.rw-hero__line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 32vh;
-  height: 2px;
-  z-index: 5;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(232,37,26,0.1) 20%,
-    rgba(255,80,60,0.3) 50%,
-    rgba(232,37,26,0.1) 80%,
-    transparent 100%
-  );
-  box-shadow: 0 0 30px 4px rgba(232,37,26,0.15);
-  filter: blur(3px);
-  transform-origin: left;
-  pointer-events: none;
-}
-
-/* ─── Main content ──────────────────────────────────────────── */
-.rw-hero__content {
+.rw-hero__content-wrapper {
   position: relative;
   z-index: 10;
-  max-width: 1160px;
-  margin: 0 auto;
+  max-width: 1200px;
   width: 100%;
-  padding: 0 48px 10vh;
+  margin: 0 auto;
+  padding: 0 40px 80px;
 }
 
-/* ─── Eyebrow ───────────────────────────────────────────────── */
+.rw-hero__content {
+  max-width: 550px;
+  position: relative;
+}
+
 .rw-hero__eyebrow {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(232, 37, 26, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+}
+
+.rw-hero__headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 6vw, 85px);
+  font-weight: 900;
+  font-style: normal;
+  line-height: 0.95;
+  color: #fff;
+  margin: 0 0 20px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.rw-hero__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 500px;
+  margin: 0 0 32px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.rw-hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.rw-hero__btn-primary, .rw-hero__btn-secondary {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 6px 14px;
-  border-radius: 3px;
-  margin-bottom: 32px;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
 }
 
-.rw-hero__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+.rw-hero__btn-primary {
   background: #e8251a;
-  box-shadow: 0 0 8px rgba(232,37,26,1), 0 0 16px rgba(232,37,26,0.5);
-  flex-shrink: 0;
-  animation: rw-hero-pulse 2s ease-in-out infinite;
-}
-
-@keyframes rw-hero-pulse {
-  0%, 100% { opacity: 1;   transform: scale(1);    }
-  50%       { opacity: 0.5; transform: scale(0.75); }
-}
-
-.rw-hero__divider {
-  color: rgba(255,255,255,0.2);
-  margin: 0 2px;
-}
-
-/* ─── H1 ────────────────────────────────────────────────────── */
-.rw-hero__h1 {
-  font-family: var(--font-disp);
-  font-size: clamp(3.4rem, 9vw, 8rem);
-  font-weight: 900;
-  font-style: italic;
-  line-height: 1.0;
-  letter-spacing: -0.035em;
   color: #fff;
-  margin: 0 0 24px;
-  text-shadow: 0 6px 48px rgba(0,0,0,0.55);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
 }
 
-.rw-hero__h1-em {
-  display: block;
-  color: #e8251a;
-  font-style: italic;
-  /* Subtle text glow */
-  text-shadow:
-    0 0 60px rgba(232,37,26,0.35),
-    0 6px 48px rgba(0,0,0,0.55);
+.rw-hero__btn-primary:hover {
+  background: #c41a11;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
-/* ─── Role ticker ───────────────────────────────────────────── */
-.rw-hero__ticker {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  font-family: var(--font-ui);
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  color: rgba(255,255,255,0.4);
-  font-weight: 400;
-  margin-bottom: 28px;
-  line-height: 1.4;
+.rw-hero__btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
-.rw-hero__ticker-prefix {
-  white-space: nowrap;
+.rw-hero__btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  transform: translateY(-2px);
 }
 
-.rw-hero__ticker-window {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  height: 1.45em;
-  min-width: 240px;
-  vertical-align: bottom;
-}
-
-.rw-hero__ticker-word {
-  display: block;
+.rw-hero__stats {
   position: absolute;
-  left: 0;
-  top: 0;
-  color: #fff;
-  font-weight: 700;
-  white-space: nowrap;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 }
 
-/* ─── Description ───────────────────────────────────────────── */
-.rw-hero__desc {
-  font-family: var(--font-ui);
-  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
-  line-height: 1.78;
-  color: rgba(255,255,255,0.45);
-  max-width: 500px;
-  margin: 0 0 44px;
-}
-
-/* ─── CTA buttons ───────────────────────────────────────────── */
-.rw-hero__ctas {
+.rw-hero__stat-card {
+  background: rgba(30, 10, 10, 0.6);
+  border-radius: 12px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 36px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  min-width: 160px;
+  backdrop-filter: blur(8px);
 }
 
-/* Shared button base */
-.rw-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  padding: 14px 32px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+/* Stagger the second card */
+.rw-hero__stat-card:nth-child(2) {
+  margin-left: -50px;
 }
 
-/* Shimmer sweep */
-.rw-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.16) 50%, transparent 65%);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-  pointer-events: none;
-}
-.rw-btn:hover::before { transform: translateX(100%); }
-
-/* Primary — solid red */
-.rw-btn--primary {
-  background: #e8251a;
-  color: #fff;
-  box-shadow: 0 4px 24px rgba(232,37,26,0.3);
-}
-.rw-btn--primary:hover {
-  background: #c41a11;
-  box-shadow: 0 4px 40px rgba(232,37,26,0.55);
-  transform: translateY(-2px);
-}
-
-/* Ghost — outline */
-.rw-btn--ghost {
-  background: transparent;
-  color: rgba(255,255,255,0.65);
-  border: 1px solid rgba(255,255,255,0.15);
-}
-.rw-btn--ghost:hover {
-  color: #fff;
-  border-color: rgba(255,255,255,0.4);
-  transform: translateY(-2px);
-}
-
-/* ─── Trust strip ───────────────────────────────────────────── */
-.rw-hero__trust {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
-  flex-wrap: wrap;
-}
-
-.rw-hero__trust-sep {
-  color: rgba(255,255,255,0.15);
-}
-
-/* ─── Floating stat chips ───────────────────────────────────── */
-.rw-hero__chip {
-  position: absolute;
-  z-index: 10;
-  background: rgba(6,4,4,0.82);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 6px;
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.rw-hero__chip:hover {
-  transform: translateY(-4px);
-  border-color: rgba(232,37,26,0.3);
-}
-
-.rw-hero__chip--top    { top: 26%;    right: max(7%, 24px); }
-.rw-hero__chip--bottom { bottom: 22%; right: max(9%, 24px); }
-
-.rw-hero__chip-num {
-  font-family: var(--font-disp);
-  font-size: 2.2rem;
+.rw-hero__stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
   font-weight: 900;
-  font-style: italic;
   color: #fff;
-  line-height: 1;
+  line-height: 0.9;
 }
 
-.rw-hero__chip-num sup {
+.rw-hero__stat-num sup {
   font-size: 1rem;
-  color: #e8251a;
-  font-style: normal;
+  font-family: 'Inter', sans-serif;
   vertical-align: super;
 }
 
-.rw-hero__chip-label {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
+.rw-hero__stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
 }
 
-/* ─── Line-break for mobile ──────────────────────────────────── */
-.rw-hero__br { display: none; }
+@media (max-width: 992px) {
+  .rw-hero__bg {
+    opacity: 0.4;
+    background-position: center center;
+  }
+  
+  .rw-hero__stats {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    margin-top: 60px;
+    gap: 20px;
+  }
+  
+  .rw-hero__stat-card:nth-child(2) {
+    margin-left: 0;
+  }
+  
+  .rw-hero__content-wrapper {
+    padding-top: 120px;
+  }
+}
 
-/* ─── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+  .rw-hero__stats {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
   .rw-hero__content {
-    padding: 0 22px 9vh;
+    text-align: left;
   }
-
-  .rw-hero__chip--top    { top: 22%; right: 16px; }
-  .rw-hero__chip--bottom { bottom: 18%; right: 16px; }
-
-  .rw-hero__chip {
-    padding: 14px 18px;
-    gap: 12px;
+  
+  .rw-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
   }
-
-  .rw-hero__chip-num { font-size: 1.8rem; }
-
-  .rw-hero__ctas { gap: 10px; }
-
-  .rw-btn { padding: 12px 22px; font-size: 0.68rem; }
-
-  .rw-hero__br { display: block; }
-}
-
-@media (max-width: 480px) {
-  .rw-hero__chip--top { display: none; }
+  
+  .rw-hero__btn-primary, .rw-hero__btn-secondary {
+    justify-content: center;
+  }
 }
