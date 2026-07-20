@@ -39,6 +39,7 @@ export default function Footer() {
             <ul className="space-y-4 text-white/60 text-sm font-medium">
               <li><a href="/#work" className="hover:text-white transition-colors">Selected Work</a></li>
               <li><a href="/#about" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="/404" className="hover:text-white transition-colors">404 Page Demo</a></li>
               <li>
                 <a href="/#contact" className="hover:text-white transition-colors flex items-center gap-2">
                   Start a Project
@@ -87,7 +88,7 @@ export default function Footer() {
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms & Security</a>
             </div>
-            <span>© 2026 REDWORK. All rights reserved. Maintained by <a href="https://senostudio.in" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">senostudio.in</a></span>
+            <span>© 2026 REDWORK. All rights reserved. REDWORK is maintained by <a href="https://senostudio.in" target="_blank" rel="noreferrer" className="hover:text-white underline underline-offset-2 transition-colors">senostudio.in</a> main website.</span>
           </div>
         </div>
 
