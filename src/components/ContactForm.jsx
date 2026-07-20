@@ -4,7 +4,7 @@ import { GoArrowUpRight } from 'react-icons/go';
 
 export default function ContactForm() {
   return (
-    <section className="section" style={{ padding: '80px 0', background: 'var(--bg)' }}>
+    <section id="contact" className="section" style={{ padding: '80px 0', background: 'var(--bg)' }}>
       <div className="container" style={{ maxWidth: '800px' }}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

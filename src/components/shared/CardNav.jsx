@@ -127,7 +127,7 @@ export default function CardNav({ items, onOpenBooking }) {
         {/* Desktop Links (Center) */}
         <nav className="pnav-desktop" aria-label="Desktop navigation">
           {allLinks.slice(0, 5).map((lnk, i) => (
-            <Link key={i} to={lnk.href} className="pnav-desktop-link">{lnk.label}</Link>
+            <a key={i} href={lnk.href} className="pnav-desktop-link">{lnk.label}</a>
           ))}
         </nav>
 
@@ -176,8 +176,8 @@ export default function CardNav({ items, onOpenBooking }) {
           <ul className="pnav-items" role="list">
             {allLinks.map((lnk, i) => (
               <li key={`${lnk.href}-${i}`} style={{ listStyle: 'none' }}>
-                <Link
-                  to={lnk.href}
+                <a
+                  href={lnk.href}
                   className="pnav-item"
                   aria-label={lnk.ariaLabel}
                   ref={el => { if (el) itemEls.current[i] = el; }}
@@ -188,7 +188,7 @@ export default function CardNav({ items, onOpenBooking }) {
                   </span>
                   <span className="pnav-item-label">{lnk.label}</span>
                   <GoArrowUpRight className="pnav-item-arrow" aria-hidden="true" />
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
