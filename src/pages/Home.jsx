@@ -4,6 +4,7 @@ import Story from '../components/Story';
 import Services from '../components/Services';
 import AiSearch from '../components/AiSearch';
 import Work from '../components/Work';
+import MarqueeBand from '../components/MarqueeBand';
 
 export default function Home() {
   const { onOpenBooking } = useOutletContext();
@@ -11,9 +12,10 @@ export default function Home() {
   return (
     <>
       <Hero onOpenBooking={onOpenBooking} />
+      <MarqueeBand />
       <Story />
-      <AiSearch />
       <Services preview={true} onOpenBooking={onOpenBooking} />
+      <AiSearch />
       <Work preview={true} onOpenBooking={onOpenBooking} />
     </>
   );

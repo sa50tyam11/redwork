@@ -1,200 +1,244 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { gsap } from 'gsap';
+import { Link, useLocation } from 'react-router-dom';
 import { GoArrowUpRight } from 'react-icons/go';
-import { Link } from 'react-router-dom';
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import './CardNav.css';
 
-const CardNav = ({
-  logo,
-  logoAlt = 'Logo',
-  items,
-  className = '',
-  ease = 'power3.out',
-  baseColor = '#fff',
-  menuColor,
-  buttonBgColor,
-  buttonTextColor,
-  onOpenBooking
-}) => {
-  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const navRef = useRef(null);
-  const cardsRef = useRef([]);
-  const tlRef = useRef(null);
+export default function CardNav({ items, onOpenBooking }) {
+  const [isOpen, setIsOpen]       = useState(false);
+  const [scrolled, setScrolled]   = useState(false);
+  const overlayRef  = useRef(null);
+  const itemEls     = useRef([]);
+  const footerRef   = useRef(null);
+  const tlRef       = useRef(null);
+  const location    = useLocation();
 
-  const calculateHeight = () => {
-    const navEl = navRef.current;
-    if (!navEl) return 260;
+  /* ── Scroll ──────────────────────────────────────────────── */
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
 
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (isMobile) {
-      const contentEl = navEl.querySelector('.card-nav-content');
-      if (contentEl) {
-        const wasVisible = contentEl.style.visibility;
-        const wasPointerEvents = contentEl.style.pointerEvents;
-        const wasPosition = contentEl.style.position;
-        const wasHeight = contentEl.style.height;
+  /* ── Body scroll lock ────────────────────────────────────── */
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
-        contentEl.style.visibility = 'visible';
-        contentEl.style.pointerEvents = 'auto';
-        contentEl.style.position = 'static';
-        contentEl.style.height = 'auto';
+  /* ── Close on route change ───────────────────────────────── */
+  useEffect(() => {
+    if (isOpen) closeMenu();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
-        contentEl.offsetHeight;
+  /* ── Escape key ──────────────────────────────────────────── */
+  useEffect(() => {
+    const fn = (e) => { if (e.key === 'Escape' && isOpen) closeMenu(); };
+    window.addEventListener('keydown', fn);
+    return () => window.removeEventListener('keydown', fn);
+  }, [isOpen]); // eslint-disable-line
 
-        const topBar = 60;
-        const padding = 16;
-        const contentHeight = contentEl.scrollHeight;
-
-        contentEl.style.visibility = wasVisible;
-        contentEl.style.pointerEvents = wasPointerEvents;
-        contentEl.style.position = wasPosition;
-        contentEl.style.height = wasHeight;
-
-        return topBar + contentHeight + padding;
-      }
-    }
-    return 260;
-  };
-
-  const createTimeline = () => {
-    const navEl = navRef.current;
-    if (!navEl) return null;
-
-    gsap.set(navEl, { height: 60, overflow: 'hidden' });
-    gsap.set(cardsRef.current, { y: 50, opacity: 0 });
+  /* ── Build GSAP timeline ─────────────────────────────────── */
+  const buildTl = useCallback(() => {
+    const overlay  = overlayRef.current;
+    const inner    = document.querySelector('.pnav-overlay-inner');
+    const els      = itemEls.current.filter(Boolean);
+    const footer   = footerRef.current;
+    if (!overlay || !inner) return null;
 
     const tl = gsap.timeline({ paused: true });
 
-    tl.to(navEl, {
-      height: calculateHeight,
-      duration: 0.4,
-      ease
-    });
+    /* Backdrop fade in */
+    tl.fromTo(
+      overlay,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.4, ease: 'power2.out' }
+    );
 
-    tl.to(cardsRef.current, { y: 0, opacity: 1, duration: 0.4, ease, stagger: 0.08 }, '-=0.1');
+    /* Sidebar slide in from right */
+    tl.fromTo(
+      inner,
+      { x: '100%' },
+      { x: '0%', duration: 0.6, ease: 'power4.inOut' },
+      0
+    );
+
+    /* Stagger nav items */
+    if (els.length) {
+      tl.fromTo(
+        els,
+        { x: 30, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.05 },
+        '-=0.3'
+      );
+    }
+
+    /* Footer slides up */
+    if (footer) {
+      tl.fromTo(
+        footer,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' },
+        '-=0.2'
+      );
+    }
 
     return tl;
-  };
+  }, []);
 
-  useLayoutEffect(() => {
-    const tl = createTimeline();
+  const openMenu = useCallback(() => {
+    setIsOpen(true);
+    const tl = buildTl();
     tlRef.current = tl;
+    tl?.play();
+  }, [buildTl]);
 
-    return () => {
-      tl?.kill();
-      tlRef.current = null;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ease, items]);
-
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      if (!tlRef.current) return;
-
-      if (isExpanded) {
-        const newHeight = calculateHeight();
-        gsap.set(navRef.current, { height: newHeight });
-
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          newTl.progress(1);
-          tlRef.current = newTl;
-        }
-      } else {
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          tlRef.current = newTl;
-        }
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isExpanded]);
-
-  const toggleMenu = () => {
+  const closeMenu = useCallback(() => {
     const tl = tlRef.current;
-    if (!tl) return;
-    if (!isExpanded) {
-      setIsHamburgerOpen(true);
-      setIsExpanded(true);
-      tl.play(0);
+    if (tl) {
+      tl.reverse().then(() => setIsOpen(false));
     } else {
-      setIsHamburgerOpen(false);
-      tl.eventCallback('onReverseComplete', () => setIsExpanded(false));
-      tl.reverse();
+      setIsOpen(false);
     }
-  };
+  }, []);
 
-  const setCardRef = i => el => {
-    if (el) cardsRef.current[i] = el;
-  };
+  const toggle = useCallback(() => {
+    isOpen ? closeMenu() : openMenu();
+  }, [isOpen, openMenu, closeMenu]);
+
+  /* ── Flatten links ───────────────────────────────────────── */
+  const allLinks = (items || []).flatMap(g => g.links || []);
 
   return (
-    <div className={`card-nav-container ${className}`}>
-      <nav ref={navRef} className={`card-nav ${isExpanded ? 'open' : ''}`} style={{ backgroundColor: baseColor }}>
-        <div className="card-nav-top">
-          <div
-            className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
-            onClick={toggleMenu}
-            onKeyDown={e => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleMenu();
-              }
-            }}
-            role="button"
-            aria-label={isExpanded ? 'Close menu' : 'Open menu'}
-            aria-expanded={isExpanded}
-            tabIndex={0}
-            style={{ color: menuColor || '#000' }}
-          >
-            <div className="hamburger-line" />
-            <div className="hamburger-line" />
-          </div>
+    <>
+      {/* ═══ TOP BAR ═══════════════════════════════════════════ */}
+      <header
+        className={`pnav-bar ${scrolled ? 'scrolled' : ''} ${isOpen ? 'menu-open' : ''}`}
+        role="banner"
+      >
+        {/* Logo */}
+        <Link to="/" className="pnav-logo" aria-label="Redwork home">
+          <span className="pnav-logo-red">RED</span>
+          <span className="pnav-logo-work">WORK</span>
+        </Link>
 
-          <Link to="/" className="logo-container">
-            <span style={{ color: '#fff' }}>RED</span>
-            <em style={{ color: menuColor || '#000' }}>WORK</em>
-          </Link>
+        {/* Desktop Links (Center) */}
+        <nav className="pnav-desktop" aria-label="Desktop navigation">
+          {allLinks.slice(0, 5).map((lnk, i) => (
+            <Link key={i} to={lnk.href} className="pnav-desktop-link">{lnk.label}</Link>
+          ))}
+        </nav>
+
+        {/* Right controls */}
+        <div className="pnav-right">
+          {!isOpen && (
+            <button
+              type="button"
+              className="pnav-cta"
+              onClick={onOpenBooking}
+              aria-label="Book a free consultation"
+            >
+              Free Consult
+            </button>
+          )}
 
           <button
             type="button"
-            className="card-nav-cta-button"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
-            onClick={onOpenBooking}
+            className={`pnav-toggle ${isOpen ? 'is-open' : ''}`}
+            onClick={toggle}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
+            aria-controls="pnav-overlay"
           >
-            Get Free Consult
+            <span className="pnav-toggle-label">{isOpen ? 'Close' : 'Menu'}</span>
+            <span className="pnav-burger" aria-hidden="true">
+              <span className="pnav-burger-line" />
+              <span className="pnav-burger-line" />
+            </span>
           </button>
         </div>
+      </header>
 
-        <div className="card-nav-content" aria-hidden={!isExpanded}>
-          {(items || []).slice(0, 3).map((item, idx) => (
-            <div
-              key={`${item.label}-${idx}`}
-              className="nav-card"
-              ref={setCardRef(idx)}
-              style={{ backgroundColor: item.bgColor, color: item.textColor }}
-            >
-              <div className="nav-card-label">{item.label}</div>
-              <div className="nav-card-links">
-                {item.links?.map((lnk, i) => (
-                  <Link key={`${lnk.label}-${i}`} className="nav-card-link" to={lnk.href} aria-label={lnk.ariaLabel} onClick={toggleMenu}>
-                    <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                    {lnk.label}
-                  </Link>
-                ))}
+      {/* ═══ FULLSCREEN OVERLAY ════════════════════════════════ */}
+      <nav
+        id="pnav-overlay"
+        ref={overlayRef}
+        className={`pnav-overlay ${isOpen ? 'is-open' : ''}`}
+        aria-hidden={!isOpen}
+        aria-label="Main navigation"
+        onClick={closeMenu}
+      >
+        <div className="pnav-overlay-inner" onClick={(e) => e.stopPropagation()}>
+
+          {/* ── Nav links ─────────────────────────────────────── */}
+          <ul className="pnav-items" role="list">
+            {allLinks.map((lnk, i) => (
+              <li key={`${lnk.href}-${i}`} style={{ listStyle: 'none' }}>
+                <Link
+                  to={lnk.href}
+                  className="pnav-item"
+                  aria-label={lnk.ariaLabel}
+                  ref={el => { if (el) itemEls.current[i] = el; }}
+                  onClick={closeMenu}
+                >
+                  <span className="pnav-item-num" aria-hidden="true">
+                    0{i + 1}
+                  </span>
+                  <span className="pnav-item-label">{lnk.label}</span>
+                  <GoArrowUpRight className="pnav-item-arrow" aria-hidden="true" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* ── Footer strip ──────────────────────────────────── */}
+          <div className="pnav-footer" ref={footerRef}>
+            {/* Left: tagline + live status */}
+            <div>
+              <div className="pnav-footer-tagline">
+                <strong>Redwork Studio</strong>
+                Websites · Bots · Student Projects<br />
+                Built fast. Delivered right.
+              </div>
+              <div className="pnav-status" style={{ marginTop: '12px' }}>
+                <span className="pnav-status-dot" aria-hidden="true" />
+                Available for new projects
               </div>
             </div>
-          ))}
+
+            {/* Right: CTA + socials */}
+            <div className="pnav-footer-right">
+              <a
+                href="https://wa.me/917667261838"
+                target="_blank"
+                rel="noreferrer"
+                className="pnav-contact-pill"
+                aria-label="Chat on WhatsApp"
+              >
+                WhatsApp Us ↗
+              </a>
+
+              <div className="pnav-socials" aria-label="Social links">
+                <a href="#" className="pnav-social-link" aria-label="Instagram">
+                  <FaInstagram />
+                </a>
+                <a href="#" className="pnav-social-link" aria-label="Twitter">
+                  <FaTwitter />
+                </a>
+                <a href="#" className="pnav-social-link" aria-label="Facebook">
+                  <FaFacebook />
+                </a>
+                <a href="#" className="pnav-social-link" aria-label="YouTube">
+                  <FaYoutube />
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </nav>
-    </div>
+    </>
   );
-};
-
-export default CardNav;
+}

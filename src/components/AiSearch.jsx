@@ -114,35 +114,38 @@ export default function AiSearch({ compact = false }) {
   };
 
   return (
-    <section className="section section-dark" id="search" style={{ borderTop: '1px solid var(--glass-border)', padding: compact ? '40px 0' : '100px 0' }}>
+    <section className="section" id="search" style={{ padding: compact ? '40px 0' : '100px 0' }}>
       <div className="container container-narrow">
         
         {!compact && (
           <motion.div 
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
             style={{ 
-              background: 'rgba(226,154,46,0.12)', 
-              border: '1px solid rgba(226,154,46,0.25)', 
-              borderLeft: '4px solid #f5a623', 
-              borderRadius: '12px', 
-              padding: '16px 24px', 
+              background: 'rgba(255,255,255,0.02)', 
+              border: '1px solid rgba(255,255,255,0.06)', 
+              borderRadius: '8px', 
+              padding: '20px 24px', 
               marginBottom: '64px', 
               display: 'flex', 
               gap: '16px', 
-              alignItems: 'center' 
+              alignItems: 'flex-start' 
             }}
           >
-            <span style={{ fontSize: '1.4rem' }}>⚠️</span>
-            <p style={{ margin: 0, color: 'var(--text-mute)', fontSize: '0.9rem', lineHeight: 1.6 }}>
-              <strong style={{ color: 'var(--text)' }}>Note:</strong> All prices shown are <strong style={{ color: 'var(--amber)' }}>starting points</strong>. Final pricing depends on project complexity, features, revisions, and timeline. A custom quote will be shared before any work begins.
+            <span style={{ color: 'var(--red)', fontSize: '1.2rem', marginTop: '-2px' }}>✦</span>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.55)', fontSize: '0.9rem', lineHeight: 1.6, fontFamily: 'var(--font-ui)', fontWeight: 400, letterSpacing: '0.02em' }}>
+              <span style={{ color: 'rgba(255,255,255,0.9)', fontWeight: 500 }}>Note: </span> 
+              All prices shown are starting points. Final pricing depends on project complexity, features, revisions, and timeline. A custom quote will be shared before any work begins.
             </p>
           </motion.div>
         )}
 
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="label" style={{ color: 'var(--red)' }}>
+        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="typo-badge" style={{ color: 'var(--red)', marginBottom: '16px' }}>
           AI Powered
         </motion.p>
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="section-title">
+        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="typo-section-h2" style={{ margin: 0 }}>
           Find What You Need
         </motion.h2>
 

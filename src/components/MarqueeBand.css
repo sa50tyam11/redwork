@@ -1,0 +1,83 @@
+/* ── Marquee Band ────────────────────────────────────────────── */
+.marquee-band {
+  width: 100%;
+  overflow: hidden;
+  background: #e8251a;
+  padding: 14px 0;
+  position: relative;
+  z-index: 15;
+  box-shadow: inset 0 12px 15px -10px rgba(0,0,0,0.5), inset 0 -12px 15px -10px rgba(0,0,0,0.5);
+}
+
+.marquee-band--inv {
+  background: #0d0d0f;
+  /* Soft red gradient shadow instead of sharp lines */
+  box-shadow: inset 0 20px 20px -20px rgba(232,37,26,0.15), inset 0 -20px 20px -20px rgba(232,37,26,0.15);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-band--inv .marquee-track {
+  animation-direction: reverse;
+  animation-duration: 32s;
+}
+
+.marquee-item {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  padding: 0 28px;
+  white-space: nowrap;
+}
+
+.marquee-band--inv .marquee-item {
+  color: rgba(255,255,255,0.25);
+}
+
+/* Pause on hover */
+.marquee-band:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Fade edges */
+.marquee-band::before,
+.marquee-band::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.marquee-band::before {
+  left: 0;
+  background: linear-gradient(to right, #e8251a, transparent);
+}
+.marquee-band::after {
+  right: 0;
+  background: linear-gradient(to left, #e8251a, transparent);
+}
+
+.marquee-band--inv::before {
+  background: linear-gradient(to right, #0d0d0f, transparent);
+}
+.marquee-band--inv::after {
+  background: linear-gradient(to left, #0d0d0f, transparent);
+}

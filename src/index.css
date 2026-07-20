@@ -1,25 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ---- TOKENS ---- */
 :root {
-  --red: #e8251a;
-  --red-glow: #ff3326;
-  --red-dim: rgba(232, 37, 26, 0.18);
-  --bg: #16181D;
-  --bg-1: #1F2127;
-  --bg-2: #2A2C33;
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --text: #ffffff;
-  --text-dim: rgba(255, 255, 255, 0.7);
-  --text-mute: rgba(255, 255, 255, 0.4);
-  --font-disp: 'Playfair Display', Georgia, serif;
-  --font-ui: 'Syne', sans-serif;
+  /* — Brand reds — */
+  --red:        #E11D48;
+  --red-vivid:  #f43f5e;
+  --red-glow:   #fb7185;
+  --red-deep:   #be123c;
+  --red-dim:    rgba(225, 29, 72, 0.16);
+  --red-mist:   rgba(225, 29, 72, 0.07);
+
+  /* — Backgrounds (deep linear dark) — */
+  --bg:         #070709;
+  --bg-1:       #0A0A0C;
+  --bg-2:       #111114;
+  --bg-3:       #17171C;
+  --bg-card:    rgba(255, 255, 255, 0.02);
+
+  /* — Glass — */
+  --glass:        rgba(255, 255, 255, 0.03);
+  --glass-hover:  rgba(255, 255, 255, 0.06);
+  --glass-border: #1F1F23;
+  --glass-red:    rgba(225, 29, 72, 0.12);
+
+  /* — Text — */
+  --text:       #FAFAFA;
+  --text-dim:   rgba(250, 250, 250, 0.68);
+  --text-mute:  #9CA3AF;
+  --text-faint: rgba(250, 250, 250, 0.18);
+
+  /* — Accent (electric violet-blue for contrast against red) — */
+  --accent:       #7b5ea7;
+  --accent-light: #a07fd4;
+
+  /* — Typography — */
+  --font-disp: 'Plus Jakarta Sans', sans-serif;
+  --font-ui:   'Inter', sans-serif;
   --font-mono: 'DM Mono', monospace;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --nav-h: 68px;
+
+  /* — Motion — */
+  --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* — Layout — */
+  --nav-h:     64px;
+  --radius-lg: 1.25rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.4rem;
 }
 
 /* ---- RESET ---- */
@@ -40,10 +71,26 @@ body {
   color: var(--text);
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
 }
 
+/* Ambient top glow */
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(232, 37, 26, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Film grain overlay */
 body::after {
   content: '';
   position: fixed;
@@ -51,7 +98,7 @@ body::after {
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 a {
@@ -367,44 +414,48 @@ ul {
 
 .btn-red {
   font-family: var(--font-ui);
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #fff;
   background: var(--red);
-  padding: 13px 28px;
-  border-radius: 100px;
-  border: 1px solid var(--red);
-  transition: box-shadow 0.25s, transform 0.15s, background 0.2s;
+  padding: 13px 30px;
+  border-radius: 4px;
+  border: none;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-red:hover {
-  background: var(--red-glow);
-  box-shadow: 0 0 32px rgba(232, 37, 26, 0.45), 0 8px 20px rgba(0, 0, 0, 0.5);
+  background: #c41a11;
+  box-shadow: 0 0 32px rgba(232, 37, 26, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4);
   transform: translateY(-2px);
 }
 
 .btn-ghost-hero {
   font-family: var(--font-ui);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: rgba(245,245,247,0.65);
   background: transparent;
-  padding: 13px 28px;
-  border-radius: 100px;
-  border: 1px solid var(--glass-border);
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  padding: 12px 28px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: color 0.25s, border-color 0.25s, transform 0.2s;
   cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .btn-ghost-hero:hover {
-  color: var(--text);
-  border-color: rgba(255, 255, 255, 0.22);
-  background: var(--glass);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.38);
+  transform: translateY(-2px);
 }
 
 /* ---- FROSTED GLASS CHIPS ---- */
@@ -613,29 +664,45 @@ ul {
 
 .label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.6rem;
   font-weight: 500;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--red);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--red);
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 
 .section-title {
   font-family: var(--font-disp);
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-style: italic;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   color: var(--text);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .section-sub {
+  font-family: var(--font-ui);
   font-size: 1rem;
-  color: var(--text-dim);
-  margin-bottom: 48px;
-  max-width: 520px;
+  color: rgba(245,245,247,0.5);
+  line-height: 1.75;
+  margin-bottom: 52px;
+  max-width: 480px;
 }
 
 /* ============================================
@@ -649,37 +716,23 @@ ul {
 }
 
 .glass-card {
-  background: var(--bg-1);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 28px;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 40px;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s, border-color 0.3s;
   position: relative;
   overflow: hidden;
 }
 
-.glass-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle 300px at var(--mx, 50%) var(--my, 50%), rgba(232, 37, 26, 0.06), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
-}
-
-.glass-card:hover::before {
-  opacity: 1;
-}
-
 .glass-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(232, 37, 26, 0.4);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(232, 37, 26, 0.05);
+  transform: translateY(-5px);
+  border-color: rgba(232, 37, 26, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
 }
 
 .highlight-card {
-  border-color: rgba(232, 37, 26, 0.25);
+  border-color: rgba(232, 37, 26, 0.28);
   background: rgba(232, 37, 26, 0.04);
 }
 
@@ -2377,7 +2430,7 @@ ul {
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* @import moved to top of file */
 
 @layer utilities {
   .footer-glass-card {
@@ -2422,5 +2475,46 @@ ul {
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
+  }
+
+  /* --- TYPOGRAPHY SCALE (Redesign) --- */
+  .typo-hero-h1 {
+    font-family: var(--font-disp);
+    font-size: clamp(3.5rem, 6vw, 4.25rem); /* 56px to 68px */
+    line-height: 1.1;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .typo-section-h2 {
+    font-family: var(--font-disp);
+    font-size: clamp(2.25rem, 4vw, 2.75rem); /* 36px to 44px */
+    line-height: 1.2;
+    font-weight: 700;
+    font-style: normal !important;
+    color: var(--text);
+  }
+
+  .typo-card-title {
+    font-family: var(--font-ui);
+    font-size: clamp(1.25rem, 2vw, 1.5rem); /* 20px to 24px */
+    font-weight: 600;
+    font-style: normal !important;
+    color: var(--text);
+  }
+
+  .typo-body {
+    font-family: var(--font-ui);
+    font-size: clamp(1rem, 1.5vw, 1.125rem); /* 16px to 18px */
+    line-height: 1.6;
+    color: var(--text-mute);
+  }
+
+  .typo-badge {
+    font-family: var(--font-ui);
+    font-size: clamp(0.75rem, 1vw, 0.875rem); /* 12px to 14px */
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 }

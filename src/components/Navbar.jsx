@@ -1,46 +1,22 @@
 import React from 'react';
 import CardNav from './shared/CardNav';
 
+// Flat list of nav links — displayed as large editorial items in the overlay
 const items = [
   {
-    label: "About Us",
-    bgColor: "#1B1722",
-    textColor: "#fff",
+    label: 'Navigation',
     links: [
-      { label: "Home", href: "/", ariaLabel: "Home Page" },
-      { label: "Services", href: "/services", ariaLabel: "Our Services" },
-      { label: "Pricing", href: "/pricing", ariaLabel: "Pricing Plans" }
-    ]
+      { label: 'Home',         href: '/',             ariaLabel: 'Go to Home page' },
+      { label: 'Services',     href: '/services',     ariaLabel: 'View our Services' },
+      { label: 'Our Work',     href: '/work',         ariaLabel: 'See our Portfolio' },
+      { label: 'Pricing',      href: '/pricing',      ariaLabel: 'View Pricing Plans' },
+      { label: 'How We Work',  href: '/how-we-work',  ariaLabel: 'Our Process' },
+      { label: 'Testimonials', href: '/testimonials', ariaLabel: 'Client Reviews' },
+      { label: 'Contact',      href: '/contact',      ariaLabel: 'Get in Touch' },
+    ],
   },
-  {
-    label: "Work", 
-    bgColor: "#2F293A",
-    textColor: "#fff",
-    links: [
-      { label: "Our Work", href: "/work", ariaLabel: "Our Portfolio" },
-      { label: "Search", href: "/search", ariaLabel: "Search Projects" }
-    ]
-  },
-  {
-    label: "Contact",
-    bgColor: "#111111", 
-    textColor: "#fff",
-    links: [
-      { label: "Contact Us", href: "/contact", ariaLabel: "Contact Form" }
-    ]
-  }
 ];
 
 export default function Navbar({ onOpenBooking }) {
-  return (
-    <CardNav
-      items={items}
-      baseColor="#111111"
-      menuColor="#e8251a"
-      buttonBgColor="#e8251a"
-      buttonTextColor="#fff"
-      ease="power3.out"
-      onOpenBooking={onOpenBooking}
-    />
-  );
+  return <CardNav items={items} onOpenBooking={onOpenBooking} />;
 }

@@ -1,119 +1,172 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import './Hero.css';
 
-const captions = [
-  "Websites that actually convert.",
-  "/ What Powers Us",
-  "Bots by day, websites by midnight.",
-  "Building digital tools that matter."
-];
+const roles = ['Discord Bots', 'Business Websites', 'Student Projects', 'Automation Tools'];
+const EASE  = [0.16, 1, 0.3, 1];
 
-export default function Hero() {
-  const [captionIndex, setCaptionIndex] = useState(0);
+export default function Hero({ onOpenBooking }) {
+  const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCaptionIndex((prev) => (prev + 1) % captions.length);
-    }, 3500);
-    return () => clearInterval(interval);
+    const id = setInterval(() => setRoleIndex(p => (p + 1) % roles.length), 2800);
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <section
-      className="relative w-full h-[100svh] bg-[#080808] overflow-hidden selection:bg-[#e8251a] selection:text-[#fff]"
-      style={{
-        backgroundImage: 'url("/hero.png")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      {/* Background Soft Glows (Dark theme friendly) */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-60">
-        <div className="w-[800px] h-[800px] bg-[#e8251a]/5 blur-[100px] rounded-[100%] scale-150 transform -translate-y-10"></div>
-        <div className="absolute w-[400px] h-[700px] bg-[#e8251a]/10 blur-[60px] rounded-[40%] top-0 left-[20%] transform rotate-12"></div>
-        <div className="absolute w-[300px] h-[500px] bg-[#e8251a]/5 blur-[70px] rounded-[30%] bottom-0 right-[20%] transform -rotate-12"></div>
-      </div>
+    <section className="rw-hero" aria-label="Hero — Redwork Studio">
 
+      {/* ── Photo layer ─────────────────────────────────────── */}
+      <div className="rw-hero__photo" aria-hidden="true" />
 
+      {/* ── Gradient overlays ───────────────────────────────── */}
+      <div className="rw-hero__glow"   aria-hidden="true" />
+      <div className="rw-hero__vignette" aria-hidden="true" />
+      <div className="rw-hero__fade"   aria-hidden="true" />
 
-      <div className="relative z-10 w-full h-full flex flex-col justify-center px-4 md:px-12 pt-16 max-w-[820px]">
+      {/* ── Scan lines texture ──────────────────────────────── */}
+      <div className="rw-hero__scanlines" aria-hidden="true" />
+
+      {/* ══════════════════════════════════════════════════════
+          CONTENT — bottom-anchored, left-aligned
+      ══════════════════════════════════════════════════════ */}
+      <div className="rw-hero__content">
+
+        {/* ── Eyebrow ─────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          className="rw-hero__eyebrow"
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="font-mono text-[0.65rem] font-bold tracking-[0.2em] uppercase text-white mb-6 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full w-fit shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+          transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
         >
-          Websites, Bots & Student Projects
+          <span className="rw-hero__dot" aria-hidden="true" />
+          Open for Projects
+          <span className="rw-hero__divider" aria-hidden="true">|</span>
+          Est. 2024
         </motion.div>
 
+        {/* ── Headline ────────────────────────────────────── */}
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          className="typo-hero-h1"
+          style={{ marginBottom: '24px', fontStyle: 'normal' }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-          className="font-disp text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-[1.05] tracking-[-0.03em] text-white mb-6 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
-          style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}
+          transition={{ duration: 1, ease: EASE, delay: 0.38 }}
         >
           Get it built.<br />
-          <em>Get it right.</em>
+          <em className="rw-hero__h1-em" style={{ fontStyle: 'normal' }}>Get it right.</em>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
+        {/* ── Ticker ──────────────────────────────────────── */}
+        <motion.div
+          className="rw-hero__ticker"
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-          className="text-[1.1rem] font-normal leading-[1.65] text-white mb-8 max-w-[540px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-          style={{ textShadow: '0 2px 12px rgba(0,0,0,0.4)' }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.56 }}
+          aria-live="polite"
+          aria-label={`We build ${roles[roleIndex]}`}
         >
-          Discord bots, final-year projects, and websites for businesses — delivered in days, with real people to talk to along the way.
+          <span className="rw-hero__ticker-prefix">We build&nbsp;</span>
+          <span className="rw-hero__ticker-window">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={roleIndex}
+                className="rw-hero__ticker-word"
+                initial={{ y: '110%', opacity: 0 }}
+                animate={{ y: '0%',   opacity: 1 }}
+                exit={{    y: '-110%', opacity: 0 }}
+                transition={{ duration: 0.42, ease: EASE }}
+              >
+                {roles[roleIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </span>
+        </motion.div>
+
+        {/* ── Description ─────────────────────────────────── */}
+        <motion.p
+          className="typo-body"
+          style={{ maxWidth: '500px', marginBottom: '44px' }}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.72 }}
+        >
+          Discord bots, final-year projects, and business websites —<br className="rw-hero__br" />
+          delivered in days with real people to talk to along the way.
         </motion.p>
 
+        {/* ── CTAs ────────────────────────────────────────── */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          className="rw-hero__ctas"
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-          className="flex flex-wrap gap-4 items-center"
+          transition={{ duration: 0.8, ease: EASE, delay: 0.88 }}
         >
-          <Link to="/contact" className="font-ui text-[0.82rem] font-bold tracking-[0.04em] uppercase text-white bg-[#e8251a]/40 backdrop-blur-md border border-[#e8251a]/50 px-6 py-[12px] rounded-full hover:bg-[#e8251a]/60 hover:border-[#e8251a]/80 transition-all shadow-[0_4px_24px_rgba(232,37,26,0.2)]">
+          <button
+            type="button"
+            className="rw-btn rw-btn--primary"
+            onClick={onOpenBooking}
+            aria-label="Book a free consultation"
+          >
             Book Free Consult
+          </button>
+
+          <Link to="/work" className="rw-btn rw-btn--ghost">
+            View Our Work&nbsp;↗
           </Link>
-          <a href="#work" className="font-ui text-[0.82rem] font-bold tracking-[0.04em] uppercase text-white bg-white/10 backdrop-blur-md border border-white/20 px-6 py-[12px] rounded-full hover:bg-white/20 hover:border-white/40 transition-all shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
-            See Our Work ↓
-          </a>
+        </motion.div>
+
+        {/* ── Horizontal Stats Bar (Replaces floating chips) ── */}
+        <motion.div
+          style={{
+            display: 'flex',
+            gap: '16px',
+            marginTop: '12px',
+            flexWrap: 'wrap'
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: EASE, delay: 1.1 }}
+        >
+          <div style={{
+            background: 'rgba(255,255,255,0.02)',
+            border: '1px solid rgba(255,255,255,0.06)',
+            borderRadius: '8px',
+            padding: '12px 20px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            boxShadow: 'inset 0 0 20px rgba(255,255,255,0.01)'
+          }}>
+            <strong style={{ fontSize: '1.5rem', color: 'var(--text)', fontFamily: 'var(--font-disp)' }}>48<span style={{ fontSize: '0.8rem', opacity: 0.6 }}>hr</span></strong>
+            <span className="typo-badge" style={{ color: 'var(--text-mute)', fontSize: '0.7rem' }}>Avg. Response</span>
+          </div>
+
+          <div style={{
+            background: 'rgba(255,255,255,0.02)',
+            border: '1px solid rgba(255,255,255,0.06)',
+            borderRadius: '8px',
+            padding: '12px 20px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            boxShadow: 'inset 0 0 20px rgba(255,255,255,0.01)'
+          }}>
+            <strong style={{ fontSize: '1.5rem', color: 'var(--text)', fontFamily: 'var(--font-disp)' }}>10<span style={{ fontSize: '0.8rem', color: 'var(--red)' }}>+</span></strong>
+            <span className="typo-badge" style={{ color: 'var(--text-mute)', fontSize: '0.7rem' }}>Projects Delivered</span>
+          </div>
         </motion.div>
       </div>
 
-      {/* Floating Stat Chips */}
-      <div className="absolute inset-0 pointer-events-none z-20">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.85, y: 8 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.1 }}
-          className="absolute bottom-[20%] right-[10%] md:right-[15%] lg:right-[20%] bg-[#0e0e0e]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-4 md:p-5 flex items-center gap-3 shadow-2xl pointer-events-auto hover:-translate-y-1 transition-transform"
-        >
-          <div className="font-disp text-2xl md:text-3xl font-black text-white leading-none">
-            10<sup>+</sup>
-          </div>
-          <div className="font-mono text-[0.6rem] md:text-[0.65rem] tracking-wider text-white/60 uppercase leading-snug w-[80px]">
-            Projects Delivered
-          </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.85, y: 8 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 1.3 }}
-          className="absolute top-[25%] right-[5%] md:right-[10%] lg:right-[15%] bg-[#0e0e0e]/70 backdrop-blur-xl border border-white/10 rounded-2xl p-4 md:p-5 flex items-center gap-3 shadow-2xl pointer-events-auto hover:-translate-y-1 transition-transform"
-        >
-          <div className="font-disp text-2xl md:text-3xl font-black text-white leading-none">
-            48<span className="text-[1rem] text-[#e8251a] align-super">Hr</span>
-          </div>
-          <div className="font-mono text-[0.6rem] md:text-[0.65rem] tracking-wider text-white/60 uppercase leading-snug w-[80px]">
-            Avg. Response
-          </div>
-        </motion.div>
-      </div>
+      {/* ── Red accent line ─────────────────────────────────── */}
+      <motion.div
+        className="rw-hero__line"
+        aria-hidden="true"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.4, ease: EASE, delay: 1.5 }}
+      />
     </section>
   );
 }
