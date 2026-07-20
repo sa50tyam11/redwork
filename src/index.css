@@ -1497,6 +1497,8 @@ ul {
   width: min(580px, 92vw);
   max-height: 90vh;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   background: rgba(14, 14, 14, 0.96);
   backdrop-filter: blur(24px);
   border: 1px solid var(--glass-border);
