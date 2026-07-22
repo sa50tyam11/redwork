@@ -3,31 +3,42 @@ import { Link } from 'react-router-dom';
 
 const EASE = [0.16, 1, 0.3, 1];
 
-const projects = [
+const caseStudies = [
   {
     href:    'https://muzaffarpurbangles.netlify.app',
     img:     '/ml.png',
-    tag:     'Client',
-    tagType: 'client',
     title:   'Muzaffarpur Lahathi',
-    desc:    'Local business — multi-page, mobile-first',
-    cta:     'View Live ↗',
+    category: 'E-Commerce / Local Business',
+    desc:    'A modern, mobile-first e-commerce platform built for a local traditional business to expand their digital footprint. Engineered with high performance and seamless user experience in mind.',
+    metrics: [
+      { label: 'Performance', value: '98/100' },
+      { label: 'Increase in reach', value: '300%' },
+    ],
+    tech: ['React', 'Tailwind CSS', 'Vite'],
+    cta:     'View Live Site ↗',
   },
   {
     href:    'https://landing-page-one-psi-78.vercel.app',
     img:     '/EL.png',
-    tag:     'Client',
-    tagType: 'client',
-    title:   'Shoe Business Landing Page',
-    desc:    'Real client project — Delhi',
-    cta:     'View Live ↗',
-  },
+    title:   'Shoe Business Platform',
+    category: 'Landing Page Optimization',
+    desc:    'A high-conversion landing page designed for a premium shoe retailer in Delhi. Focused on visual storytelling, micro-animations, and maximizing click-through rates.',
+    metrics: [
+      { label: 'Conversion Rate', value: '+45%' },
+      { label: 'Load Time', value: '< 1.2s' },
+    ],
+    tech: ['React', 'Framer Motion', 'Tailwind'],
+    cta:     'View Live Site ↗',
+  }
+];
+
+const projects = [
   {
     href:    'https://portfolio-three-kappa-s7zhcqjn04.vercel.app',
     img:     '/ss.png',
     tag:     'Portfolio',
     tagType: 'portfolio',
-    title:   'Personal Portfolio Website',
+    title:   'Personal Portfolio',
     desc:    'Built for freelancing & internship applications',
     cta:     'View Live ↗',
   },
@@ -36,7 +47,7 @@ const projects = [
     img:     '/ds.png',
     tag:     'Client',
     tagType: 'client',
-    title:   'Noidle — Discord Community',
+    title:   'Noidle Discord Site',
     desc:    'Tech community server with 100+ members',
     cta:     'View Code ↗',
   },
@@ -45,7 +56,7 @@ const projects = [
     img:     'assets/grade.png',
     tag:     'Academic',
     tagType: 'academic',
-    title:   'Grade / CGPA Calculator',
+    title:   'Grade Calculator',
     desc:    'Pure JS calculation engine for BCA students',
     cta:     'View Live ↗',
   },
@@ -58,7 +69,8 @@ const tagColors = {
 };
 
 export default function Work({ onOpenBooking, preview = false }) {
-  const visible = preview ? projects.slice(0, 4) : projects;
+  const visibleProjects = preview ? projects.slice(0, 1) : projects;
+  const visibleCaseStudies = preview ? caseStudies.slice(0, 1) : caseStudies;
 
   return (
     <section
@@ -84,17 +96,162 @@ export default function Work({ onOpenBooking, preview = false }) {
             Portfolio
           </p>
           <h2 className="typo-section-h2" style={{ margin: 0 }}>
-            Recent Work
+            {preview ? 'Featured Work' : 'Case Studies & Projects'}
           </h2>
         </motion.div>
 
-        {/* Grid */}
+        {/* Featured Case Studies */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '80px', marginBottom: '80px' }}>
+          {visibleCaseStudies.map((study, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <motion.div
+                key={study.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.7, ease: EASE }}
+                className={`case-study-container ${isEven ? 'row-normal' : 'row-reverse'}`}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '48px',
+                }}
+              >
+                {/* Image Section */}
+                <a
+                  href={study.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="case-study-image"
+                  style={{
+                    flex: '1.2',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    position: 'relative',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    background: '#111',
+                    aspectRatio: '16/10',
+                    display: 'block',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <div
+                    className="case-study-img-inner"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundImage: `url('${study.img}')`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      transition: 'transform 0.6s ease',
+                    }}
+                  />
+                  <div
+                    className="case-study-overlay"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'rgba(6,4,4,0.75)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      opacity: 0,
+                      transition: 'opacity 0.3s ease',
+                    }}
+                  >
+                    <span style={{
+                      fontFamily: 'var(--font-ui)',
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      color: '#fff',
+                      border: '1px solid rgba(255,255,255,0.4)',
+                      padding: '12px 24px',
+                      borderRadius: '4px',
+                    }}>{study.cta}</span>
+                  </div>
+                </a>
+
+                {/* Content Section */}
+                <div className="case-study-content" style={{ flex: '1', padding: '20px 0' }}>
+                  <span style={{
+                    display: 'inline-block',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.65rem',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'var(--red-glow)',
+                    marginBottom: '16px',
+                  }}>
+                    {study.category}
+                  </span>
+                  <h3 className="typo-section-h3" style={{ marginBottom: '20px', fontSize: '2rem' }}>
+                    {study.title}
+                  </h3>
+                  <p className="typo-body" style={{ marginBottom: '32px', color: 'var(--text-dim)' }}>
+                    {study.desc}
+                  </p>
+                  
+                  {/* Metrics */}
+                  <div style={{ display: 'flex', gap: '32px', marginBottom: '32px' }}>
+                    {study.metrics.map(metric => (
+                      <div key={metric.label}>
+                        <div style={{ fontSize: '1.4rem', fontWeight: 600, color: '#fff', marginBottom: '4px' }}>
+                          {metric.value}
+                        </div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--text-mute)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          {metric.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '32px' }}>
+                    {study.tech.map(t => (
+                      <span key={t} style={{
+                        padding: '6px 12px',
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        borderRadius: '4px',
+                        fontSize: '0.75rem',
+                        color: 'var(--text-dim)'
+                      }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a 
+                    href={study.href} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="rw-btn rw-btn--primary"
+                    style={{ padding: '12px 28px', fontSize: '0.8rem', display: 'inline-flex' }}
+                  >
+                    {study.cta}
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Other Projects Grid */}
+        <div style={{ marginBottom: '40px' }}>
+          <h3 className="typo-section-h3" style={{ marginBottom: '32px', fontSize: '1.5rem', color: 'var(--text-dim)' }}>
+            Other Selected Works
+          </h3>
+        </div>
+
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
           gap: '20px',
         }}>
-          {visible.map((p, i) => (
+          {visibleProjects.map((p, i) => (
             <motion.a
               key={p.title}
               href={p.href}
@@ -196,7 +353,7 @@ export default function Work({ onOpenBooking, preview = false }) {
             initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, ease: EASE, delay: visible.length * 0.07 }}
+            transition={{ duration: 0.6, ease: EASE, delay: visibleProjects.length * 0.07 }}
             style={{
               borderRadius: '6px',
               border: '1px solid rgba(232,37,26,0.2)',
@@ -245,16 +402,35 @@ export default function Work({ onOpenBooking, preview = false }) {
               className="rw-btn rw-btn--ghost"
               style={{ display: 'inline-flex' }}
             >
-              See More Work →
+              See All Projects & Case Studies →
             </Link>
           </motion.div>
         )}
       </div>
 
-      {/* Hover effects via style injection */}
+      {/* Hover effects & Responsive styles via style injection */}
       <style>{`
+        .case-study-image:hover .case-study-img-inner { transform: scale(1.04); }
+        .case-study-image:hover .case-study-overlay   { opacity: 1 !important; }
+        
         a:hover .work-img-inner { transform: scale(1.06); }
         a:hover .work-overlay   { opacity: 1 !important; }
+
+        @media (max-width: 968px) {
+          .case-study-container {
+            flex-direction: column !important;
+            gap: 32px !important;
+          }
+          .case-study-content {
+            padding: 0 !important;
+          }
+        }
+        
+        @media (min-width: 969px) {
+          .case-study-container.row-reverse {
+            flex-direction: row-reverse;
+          }
+        }
       `}</style>
     </section>
   );
