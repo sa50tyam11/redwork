@@ -31,16 +31,19 @@ const TESTIMONIALS = [
     name: 'Rahul S.',
     role: 'BCA Student',
     text: 'Helped me finish my major project on time. Code was clean and they explained how it worked so I could answer viva questions easily.',
+    rating: 5,
   },
   {
     name: 'Anita V.',
     role: 'Clinic Owner',
-    text: 'Got a website for my dental clinic. Patients can now message us directly on WhatsApp from the site. Very fast turnaround.',
+    text: 'Got a website for my dental clinic. Patients can now message us directly on WhatsApp from the site. Very fast turnaround. Great communication throughout.',
+    rating: 4,
   },
   {
     name: 'Karan M.',
     role: 'Discord Community Manager',
     text: 'The custom Discord bot handles our server verification and ticketing perfectly. Support is always fast when we need updates.',
+    rating: 5,
   },
 ];
 
@@ -145,7 +148,10 @@ const S = {
 
 /* ─── TestimonialCard ───────────────────────────────────────────────────── */
 function TestimonialCard({ testimonial }) {
-  const { name, role, text } = testimonial;
+  const { name, role, text, rating = 5 } = testimonial;
+
+  const solidStars = '★'.repeat(Math.floor(rating));
+  const emptyStars = '☆'.repeat(5 - Math.floor(rating));
 
   return (
     <motion.div
@@ -166,7 +172,7 @@ function TestimonialCard({ testimonial }) {
       <span style={S.quoteMark} aria-hidden="true">"</span>
 
       {/* Star rating */}
-      <span style={S.stars} aria-label="5 stars">★★★★★</span>
+      <span style={S.stars} aria-label={`${rating} stars`}>{solidStars}{emptyStars}</span>
 
       {/* Review text */}
       <p style={S.reviewText}>{text}</p>
