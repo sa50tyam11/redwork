@@ -228,8 +228,8 @@ export default function Work({ onOpenBooking, preview = false }) {
                     href={study.href} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="rw-btn rw-btn--primary"
-                    style={{ padding: '12px 28px', fontSize: '0.8rem', display: 'inline-flex' }}
+                    className="btn-red"
+                    style={{ padding: '12px 28px', fontSize: '0.8rem', display: 'inline-flex', borderRadius: '4px', textDecoration: 'none' }}
                   >
                     {study.cta}
                   </a>
@@ -354,38 +354,57 @@ export default function Work({ onOpenBooking, preview = false }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.6, ease: EASE, delay: visibleProjects.length * 0.07 }}
+            className="cta-card-hover"
             style={{
-              borderRadius: '6px',
-              border: '1px solid rgba(232,37,26,0.2)',
-              background: 'rgba(232,37,26,0.04)',
+              borderRadius: '12px',
+              border: '1px solid rgba(225, 29, 72, 0.3)',
+              background: 'linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(10, 10, 12, 0.8) 100%)',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'flex-start',
-              justifyContent: 'flex-end',
-              padding: '36px',
-              minHeight: '200px',
-              gap: '16px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '48px 36px',
+              minHeight: '280px',
+              gap: '24px',
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden',
+              boxShadow: '0 10px 40px rgba(225, 29, 72, 0.05)',
             }}
           >
-            <p className="typo-card-title" style={{ margin: 0 }}>
-              Got something<br />in mind?
-            </p>
-            <button
-              className="rw-btn rw-btn--primary"
-              onClick={onOpenBooking}
-              style={{ fontSize: '0.68rem', padding: '12px 24px' }}
-            >
-              Start a Project →
-            </button>
-            <span style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.58rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.28)',
-            }}>
-              Free consultation · No commitment
-            </span>
+            {/* Background Glow */}
+            <div style={{
+              position: 'absolute',
+              top: '-50%',
+              left: '-50%',
+              width: '200%',
+              height: '200%',
+              background: 'radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.15), transparent 60%)',
+              pointerEvents: 'none',
+              zIndex: 0
+            }} />
+            
+            <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+              <p className="typo-section-h3" style={{ margin: 0, fontSize: '1.8rem', color: '#fff' }}>
+                Ready to build something <span style={{ color: 'var(--red-glow)' }}>extraordinary?</span>
+              </p>
+              <button
+                className="btn-red"
+                onClick={onOpenBooking}
+                style={{ fontSize: '0.85rem', padding: '14px 32px', borderRadius: '6px', cursor: 'pointer', border: 'none', outline: 'none' }}
+              >
+                Start a Project →
+              </button>
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.4)',
+              }}>
+                Free consultation · No commitment
+              </span>
+            </div>
           </motion.div>
         </div>
 
@@ -399,8 +418,8 @@ export default function Work({ onOpenBooking, preview = false }) {
           >
             <Link
               to="/work"
-              className="rw-btn rw-btn--ghost"
-              style={{ display: 'inline-flex' }}
+              className="btn-ghost-hero"
+              style={{ display: 'inline-flex', padding: '12px 32px', borderRadius: '6px', fontSize: '0.85rem', textDecoration: 'none' }}
             >
               See All Projects & Case Studies →
             </Link>
@@ -415,6 +434,9 @@ export default function Work({ onOpenBooking, preview = false }) {
         
         a:hover .work-img-inner { transform: scale(1.06); }
         a:hover .work-overlay   { opacity: 1 !important; }
+
+        .cta-card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .cta-card-hover:hover { transform: translateY(-4px); box-shadow: 0 15px 50px rgba(225, 29, 72, 0.12) !important; }
 
         @media (max-width: 968px) {
           .case-study-container {
