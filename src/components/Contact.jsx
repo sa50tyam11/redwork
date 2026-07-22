@@ -87,9 +87,18 @@ ${data.message}`;
           </div>
           <div className="cf-footer">
             <p className="cf-note">You will be redirected to WhatsApp to send this message directly.</p>
-            <button type="submit" className="btn-red cf-submit">
-              <span>Send via WhatsApp ↗</span>
-            </button>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <a 
+                href="tel:6200964876" 
+                className="btn-ghost-hero"
+                style={{ padding: '12px 24px', fontSize: '0.85rem', textDecoration: 'none', borderRadius: '6px' }}
+              >
+                Call Us ↗
+              </a>
+              <button type="submit" className="btn-red cf-submit" style={{ margin: 0 }}>
+                <span>Send via WhatsApp ↗</span>
+              </button>
+            </div>
           </div>
           
           {/* Status Message Display */}
